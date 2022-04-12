@@ -1,51 +1,52 @@
-# def solution(lines) :
-# 	answer = []
-# 	log = []
+def solution(lines) : 
+	answer = []
+	log = []
 
-# 	for l in lines : 
-# 		_, end, time = l.split(" ")
-# 		print("befor : ", end, time)
-# 		hour, min, sec = end.split(":")
-		
-# 		# 60초 넘을 경우 -> 타임아웃이 3초로 주어짐.
-# 		# time = float(time[:len(time)-1])
-# 		# while time >= 60.0 : 
-# 		# 	min -= 1
-# 		# 	time -= 60.0
+	for l in lines : 
+		_, end, time = l.split(" ")
+		time = float(time[:len(time)-1])
+		hour, min, sec = end.split(":")
+		hour, min, sec = int(hour), int(min), float(sec)
+		end = hour * 60 * 60 + min * 60 + sec 
+		# print(end, time)
 
-# 		# 58:01.34 - 2.08 = 57:(60.0 + 01.34 - 2.08)
-# 		time = float(time[:len(time)-1])
-# 		print("sec : ", sec, "time : ", time)
-# 		sec = str("{:.3f}".format(float(sec) - time + 0.001))
-# 		if float(sec) < 0 : 
-# 			sec = str("{:.3f}".format(float(sec) + 60))
-# 			min = str(int(min) - 1)
-# 		if int(min) < 0 : 
-# 			min = str(int(min) + 60)
-# 			hour = str(int(hour) - 1)
-# 		start = hour + ":" + min + ":" + sec
-# 		print(start)
+		# get start time 
+		start = end - time + 0.001
+		# print(start)
 
-# 		log.append([start, end])
+		log.append([start, end])
 
-# 	print(log)
-
-# 	temp = []
-# 	start, end = log[0]
-# 	for l in log : 
-# 		if start < l[0] : 
-# 			start = l[0]
-# 		if end > l[1] : 
-# 			end = l[1]
-# 		print(start, end)
-# 		isCorrect(start, end)
-
-# def isCorrect(start, end) : 
-# 	shour, smin, ssec = start.split(":")
-# 	ehour, emin, esec = end.split(":")
-# 	if min(shour) < min(ehour)
-	
-		
+	# start와 end 기준으로 1초 차이 밖에 안 나면 count를 올림
+	for l1 in log : 
+		count = 0
+		s1, e1 = l1
+		for l2 in log : 
+			print(l1, l2)
+			s2, e2 = l2
+			# start - start
+			# print(round(abs(s1 - s2) + 0.001, 3))
+			# print(round(abs(s1 - e2) + 0.001, 3))
+			# print(abs(s2 - e1) + 0.001)
+			# print(abs(e1 - e2) + 0.001)
+			
+			if round(abs(s1 - s2) + 0.001,3) <= 1 : 
+				count += 1
+				print("s1 - s2")
+			# start - end
+			elif round(abs(s1 - e2) + 0.001,3) <= 1 : 
+				count += 1
+				print("s1 - e2")
+			# start - end
+			elif round(abs(s2 - e1) + 0.001, 3) <= 1 :
+				count += 1
+				print("s2 - e1")
+			# end - end
+			elif round(abs(e1 - e2) + 0.001, 3) <= 1: 
+				count += 1
+				print("e1 - e2")
+		print(count)
+		answer.append(count)
+	return max(answer)
 
 def main() : 
 	lines = ["2016-09-15 01:00:04.001 2.0s","2016-09-15 01:00:07.000 2s"] # 1
