@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./레벨2/추석트래픽.py"
+run = "python3 ./레벨2/짝지어제거하기.py"
