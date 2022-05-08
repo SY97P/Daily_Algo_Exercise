@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./레벨2/메뉴리뉴얼.py"
+run = "python3 ./백준_그리디/동전0.py"
