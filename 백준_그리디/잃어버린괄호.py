@@ -13,34 +13,58 @@ def solution(item) :
 	
 	answer, branket = 0, 0
 	is_branket = False
-	is_first = False
-	while queue : 
+	while queue :
 		curr = queue.pop(0)
-		print("curr : ", curr)
+		# print("curr : ", curr)
 		if curr == "-" : 
-			is_first = not is_first
 			is_branket = True
+			if branket != 0 : 
+				answer -= branket
+				branket = 0
+				# is_branket = False
 		if curr != "-" and curr != "+" : 
-			if is_branket : 
+			if is_branket :
 				branket += int(curr)
 			else : 
-				if not is_first : 
-					if branket == 0 : 
-						answer = int(curr)
-					else : 
-						answer -= branket
-						branket = int(curr)
-				
-			print("answer : ", answer, " branket : ", branket)
-		
-	answer -= branket 
-	print(answer)
+				answer += int(curr)
+		# print("answer : ", answer, " branket : ", branket)
+	answer -= branket
+
 	return answer
-
-
+		
 
 # 백준 제출용
-# exp = input().strip('\n')
+exp = input().strip('\n')
+queue = []
+num = ""
+for st in exp : 
+	if st.isdigit() : 
+		num += st
+	else : 
+		queue.append(num)
+		queue.append(st)
+		num = ""
+queue.append(num)
+
+answer, branket = 0, 0
+is_branket = False
+while queue :
+	curr = queue.pop(0)
+	# print("curr : ", curr)
+	if curr == "-" : 
+		is_branket = True
+		if branket != 0 : 
+			answer -= branket
+			branket = 0
+			# is_branket = False
+	if curr != "-" and curr != "+" : 
+		if is_branket :
+			branket += int(curr)
+		else : 
+			answer += int(curr)
+	# print("answer : ", answer, " branket : ", branket)
+answer -= branket
+print(answer)
 					
 
 def main() : 
