@@ -1,40 +1,36 @@
+# 모든 rope에 대해서 할 필요 없이 가장 작은 로프만 계산하면 됨. 
+
 def solution(item) : 
 	n, ropes, r = item
 	answer = 0
 	ropes = sorted(ropes)
-
-	for i in range(n-1) :
-		k = n - i
-		weight = []
-		for rope in ropes[i:] :
-			weight.append(rope * k)
-		answer = max(answer, min(weight))
+	k = 1
+	while ropes : 
+		rope = ropes.pop()
+		answer = max(answer, k * rope)
+		# print("rope : ", rope, " k : ", k, " answer : ", answer)
+		k += 1		
 
 	return answer
 
 # 백준 제출용
 n = int(input())
-ropes = []
-for i in range(n) : 
-	ropes.append(int(input()))
-answer = 0
+answer, k = 0, 1
+ropes = [int(input()) for i in range(n)]
 ropes = sorted(ropes)
 
-for i in range(n-1) :
-	k = n - i
-	weight = []
-	for rope in ropes[i:] :
-		weight.append(rope * k)
-	answer = max(answer, min(weight))
-
-print(answer) 
+while ropes : 
+	answer = max(answer, k * ropes.pop())
+	k += 1
+	
+print(answer)
 			
 
 def main() : 
 	tc = []
 	file = open("./백준_그리디/로프tc.txt", "r")
 
-	for i in range(2) :
+	for i in range(3) :
 		n = int(file.readline())
 		rope = []
 		for j in range(n) : 
