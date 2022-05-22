@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./백준_그리디/주유소.py"
+run = "python3 ./백준_그리디/수들의합.py"
