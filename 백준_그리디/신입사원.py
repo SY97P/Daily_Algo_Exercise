@@ -1,37 +1,35 @@
+import sys
 def solution(n, item) : 
-	print(n, item)
-	answer = 1
+	# print(n, item)
+	# answer = 1
 
-	item = sorted(item,  key = lambda x : x[0])
+	# item = sorted(item,  key = lambda x : x[0])
 
-	first = item.pop(0)
-	interview = first[1]
+	# first = item.pop(0)
+	# interview = first[1]
 
-	while item : 
-		_, curr = item.pop(0)
-		if curr < interview : 
-			answer += 1
-			interview = curr
-
-	return answer
+	# while item : 
+	# 	_, curr = item.pop(0)
+	# 	if curr < interview : 
+	# 		answer += 1
+	# 		interview = curr
+	
+	
 
 # 백준 제출용
-import sys
-t = int(sys.stdin.readline())
-n = int(sys.stdin.readline())
-nominees = []
-answer = 0
-for i in range(n) : 
-	nominees.append(sys.stdine)
-first = nominees.pop(0)
-interview = first[1]
-while nominees : 
-	_, curr = nominees.pop(0)
-	if curr < interview : 
-		answer += 1
-		interview = curr
-
-print(answer)
+# import sys
+# for _ in range(int(sys.stdin.readline())) :
+#     n = int(input())
+#     nomi, answer = [], 1
+#     for i in range(n) : 
+#         nomi.append(list(map(int, sys.stdin.realine().strip().split())))
+#     nomi = sorted(nomi)
+#     interview = nomi[0][1]
+#     for i in range(1, n) : 
+#         if nomi[i][1] < interview : 
+#             interview = nomi[i][1]
+#             answer += 1
+#     print(answer)
 		
 
 def main() : 
