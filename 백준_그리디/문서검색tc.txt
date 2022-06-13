@@ -1,0 +1,15 @@
+ababababa
+aba
+2
+
+a a a a a
+a a
+2
+
+ababababa
+ababa
+1
+
+aaaaaaa
+aa
+3
