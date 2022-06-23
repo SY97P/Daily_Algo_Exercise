@@ -22,9 +22,10 @@ def solution(file) :
 
 		print(len(room_time))
 
+# 다 좋은데 입력값 받는게 input()이 아니라 sys.stdin.readline()으로 해야 했음
 # 백준 제출용
-# n = int(input())
-# arr = [list(map(int, input().split())) for _ in range(n)]
+# n = int(sys.stdin.readline())
+# arr = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
 # arr.sort()
 # room_time = [arr[0][1]]
 
