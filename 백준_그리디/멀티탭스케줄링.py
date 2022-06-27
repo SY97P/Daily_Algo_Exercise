@@ -1,67 +1,78 @@
 def solution(file) :
-	for _ in range(1) :
-		n, k = map(int, file.readline().split())
-		arr = list(map(int, file.readline().split()))
-		answer = int(file.readline())
+	for tc in range(10) :
+		try :
+			print("TC : ", tc)
+			n, k = map(int, file.readline().split())
+			arr = list(map(int, file.readline().split()))
+			answer = int(file.readline())
+			file.readline()
 
-		print(n, k, arr, answer)
+			print(n, k, arr, answer)
 
-		queue = [arr[i] for i in range(n)]
-		count = 0
+			queue = [0] * n
+			count = 0
+			maxValue, maxIndex, num = 0, 0, 0
 
-		for i in range(n, k) :
-			if arr[i] in queue :
-				continue
-			else : 
-				temp = []
-				for j in range(n) :
-					try :
-						temp.append(arr[i+1:].index(queue[j]))
-					except :
-						temp.append(-1)
-							
-				print(temp)
-
-				# temp에 -1(이제 안 씀)이 나오거나
-				# temp에 가장 멀리서 쓰는 스케줄을 대체해줌
-				isChanged = False
-				if -1 in temp :
-					queue[temp.index(-1)] = arr[i]
-					isChanged = True
-				if not isChanged :
-					queue[temp.index(max(temp))] = arr[i]
-					isChanged = True
-				count += 1
-
-		print(count)
+			for ar in arr :
+				print("ar : ", ar, " queue :", queue)
+				if ar in queue :
+					print("ar is in queue")
+					continue
+				elif 0 in queue :
+					print("queue has empty space")
+					queue[queue.index(0)] = ar
+					continue
+				else :
+					print("value of queue will be removed")
+					for j in queue :
+						if j not in arr[num:] :
+							maxValue = j
+							break
+						elif maxIndex < arr[num:].index(j) :
+							maxValue = j
+							maxIndex = arr[num:].index(j)
+					queue[queue.index(maxValue)] = ar
+					maxValue, maxIndex = 0, 0
+					count += 1
+				num += 1
+				
+			print(count)
+			print()
+		except :
+			print("Invalid Test Case Number")
 
 # 백준 제출용
-n, k = map(int, input().split())
-arr = list(map(int, input().split()))
-queue = [arr[i] for i in range(n)]
-count = 0
+# import sys
 
-for i in range(n, k) :
-	if arr[i] in queue :
-		continue
-	temp = []
-	for j in range(n) :
-		try :
-			temp.append(arr[i+1:].index(queue[j]))
-		except :
-			temp.append(-1)
-	isChanged = False
-	if -1 in temp :
-		queue[temp.index(-1)] = arr[i]
-		isChanged = True
-	if not isChanged :
-		queue[temp.index(max(temp))] = arr[i]
-		isChanged = True
-	count += 1
+# n, k = map(int, sys.stdin.readline().split())
+# arr = list(map(int, sys.stdin.readline().split()))
 
-print(count)
+# queue = [0] * n
+# count = 0 
+# maxValue, maxIndex, num = 0, 0, 0
+
+# for ar in arr :
+# 	if ar in queue :
+# 		pass
+# 	elif 0 in queue :
+# 		queue[queue.index(0)] = ar
+# 		pass
+# 	else :
+# 		for j in queue :
+# 			if j not in arr[num:] :
+# 				maxValue = j
+# 				break
+# 			elif maxIndex < arr[num:].index(j) :
+# 				maxValue = j
+# 				maxIndex = arr[num:].index(j)
+# 		queue[queue.index(maxValue)] = ar
+# 		maxValue, maxIndex = 0, 0
+# 		count += 1
+# 	num += 1
+
+# print(count)
+
 				
-
 
 def main() :
 	file = open("./백준_그리디/멀티탭스케줄링tc.txt", "r")
