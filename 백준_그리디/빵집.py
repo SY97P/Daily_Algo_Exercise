@@ -1,88 +1,89 @@
-def checkUpRight(m, v, rows, cols, r, c) : 
-	# out of index가 나지 않고
-	# 방문한 적이 없어야 하고
-	# X가 아니어야 함
-	# 방향은 r-1, c+1
-	if (r-1) >= 0 and (c+1) < cols :
-		if v[r-1][c+1] == 0 :
-			if m[r-1][c+1] != "x" :
+# 재귀 사용
+def solve(matrix, visited, dx, r, c, i, j) :
+	# 원웅이네 빵집으로 도착을 했다면 True 반환
+	if j == c - 1 :
+		# print("[solve] j is approach the column limit")
+		return True
+	# 아직 원웅이네 빵집이 아니라면 dx별로 갈 수 있는 곳으로 이동
+	for d in dx :
+		# 확인해야 할 것
+		# 1. 범위 내에 있는지
+		# 2. '.' 인지 
+		# 3. visited False 인지
+		# print(0 <= i + d < r and matrix[i+d][j+1] == '.' and not visited[i+d][j+1])
+		if 0 <= i + d < r and matrix[i+d][j+1] == '.' and not visited[i+d][j+1] :
+			# print("[solve] tuple what applied dx is True")
+			visited[i+d][j+1] = True
+			if solve(matrix, visited, dx, r, c, i+d, j+1) :
+				# print("recursive solve func is starting")
 				return True
-			else :
-				return False
-		else :
-			return False
-	else : 
-		return False
-
-def checkJustRight(m, v, rows, cols, r, c) :
-	# 방향은 r, c+1
-	if (c+1) < cols :
-		if v[r][c+1] == 0 :
-			if m[r][c+1] != "x" :
-				return True
-			else : 
-				return False
-		else :
-			return False
-	else :
-		return False
-
-def checkDownRight(m, v, rows, cols, r, c) : 
-	# 방향은 r+1, c+1
-	if (r+1) < rows and (c+1) < cols :
-		if v[r+1][c+1] == 0 :
-			if m[r+1][c+1] != "x" :
-				return True
-			else :
-				return False
-		else : 
-			return False
-	else :
-		return False
-		
-
-def move(i, j, dir) :
-	if dir == "just_right" :
-		return (i, j+1)
-	elif dir == "up_right" :
-		return (i-1, j+1)
-	elif dir == "down_right" :
-		return (i+1, j+1)
+	return False
 
 def solution(file) :
-	for _ in range(2, 3) :
-		rows, cols = map(int, input().split())
-		matrix = [list(input().strip("\n")) for _ in range(rows)]
-		
+	for _ in range(2) :
+		r, c= map(int, file.readline().split())
+		matrix = [list(file.readline().strip('\n')) for _ in range(r)]
+		answer = int(file.readline())
+		file.readline()
+
+		print(r, c, answer)
+		for m in matrix :
+			print(m)
+
+		# logic 
+		dx = [-1, 0, 1] # [위, 앞, 아래]
+		visited = [[False for _ in range(c)] for _ in range(r)]
 		count = 0
-		visited = [[0 for _ in range(cols)] for _ in range(rows)]
-		for row in range(rows) :
-			if visited[row][0] != 0 :
-				continue
-			else : 
-				path = [(row, 0)]
-				r, c= row, 0
-				isComp = True
-				while c < cols - 1 : 
-					if checkUpRight(matrix, visited, rows, cols, r, c) :
-						r, c = move(r, c, "up_right")
-						path.append((r, c))
-					elif checkJustRight(matrix, visited, rows, cols, r, c) :
-						r, c = move(r, c, "just_right")
-						path.append((r, c))
-					elif checkDownRight(matrix, visited, rows, cols, r, c) :
-						r, c = move(r, c, "down_right")
-						path.append((r, c))
-					else : 
-						# 여태까지 쌓아온 경로를 모두 날려버림
-						isComp = False
-						break
-				if isComp :
-					for p in path : 
-						visited[p[0]][p[1]] = 1
-					count += 1
-		
+
+		for i in range(r) :
+			# 첫 스타트가 '.'인 경우에만 로직 순회
+			if matrix[i][0] == '.' :
+				if not visited[i][0] :
+					# print("row number ", i, " is beginning")
+					if solve(matrix, visited, dx, r, c, i, 0) :
+						count += 1
+
 		print(count)
+
+# 백준 제출용
+import sys
+
+def solve(matrix, visited, dx, r, c, i, j) :
+	# 원웅이네 빵집으로 도착을 했다면 True 반환
+	if j == c - 1 :
+		# print("[solve] j is approach the column limit")
+		return True
+	# 아직 원웅이네 빵집이 아니라면 dx별로 갈 수 있는 곳으로 이동
+	for d in dx :
+		# 확인해야 할 것
+		# 1. 범위 내에 있는지
+		# 2. '.' 인지 
+		# 3. visited False 인지
+		# print(0 <= i + d < r and matrix[i+d][j+1] == '.' and not visited[i+d][j+1])
+		if 0 <= i + d < r and matrix[i+d][j+1] == '.' and not visited[i+d][j+1] :
+			# print("[solve] tuple what applied dx is True")
+			visited[i+d][j+1] = True
+			if solve(matrix, visited, dx, r, c, i+d, j+1) :
+				# print("recursive solve func is starting")
+				return True
+	return False
+
+r, c = map(int, sys.stdin.readline().split())
+matrix = [list(map(int, sys.stdin.readline().strip('\n'))) for _ in range(r)]
+visited = [[False for _ in range(c)] for _ in range(r)]
+count = 0
+dx = [-1, 0, 1]
+
+for i in range(r) :
+	# 첫 스타트가 '.'인 경우에만 로직 순회
+	if matrix[i][0] == '.' :
+		if not visited[i][0] :
+			# print("row number ", i, " is beginning")
+			if solve(matrix, visited, dx, r, c, i, 0) :
+				count += 1
+
+print(count)
+
 
 def main() :
 	file = open("./백준_그리디/빵집tc.txt")
