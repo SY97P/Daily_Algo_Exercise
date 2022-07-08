@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./백준_그리디/공항.py"
+run = "python3 ./백준_그리디/통나무건너뛰기.py"
