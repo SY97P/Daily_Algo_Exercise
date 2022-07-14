@@ -1,6 +1,2 @@
 language = "python3"
-<<<<<<< HEAD
 run = "python3 ./bfs/숨바꼭질.py"
-=======
-run = "python3 ./bfs/토마토.py"
->>>>>>> 77c1b8e73797743cef316c1f8402111a9ed033eb
