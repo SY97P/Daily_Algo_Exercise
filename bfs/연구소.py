@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 
 file = open("./bfs/연구소tc.txt", "r")
