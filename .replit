@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./dfs/연결요소의개수.py"
+run = "python3 ./bfs/숨바꼭질.py"
