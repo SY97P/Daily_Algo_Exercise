@@ -1,4 +1,99 @@
 # 해결방안 5번 : 
+# BFS
+# 한 노드에서 벽을 부쉈을 때와 부수지 않았을 때의 중첩을 처리하는 방식
+from collections import deque
+
+file = open("./dfs/벽부수고이동하기tc.txt", "r")
+
+def bfs(queue) : 
+	global result
+	while queue : 
+		i, j, wall, count = queue.popleft()
+
+		if i == n - 1 and j == m - 1 :
+			result = min(result, count) if result != -1 else count
+			return
+
+		if matrix[i][j] == 1 : 
+			wall += 1
+
+		for d in dx : 
+			di = i + d[0]
+			dj = j + d[1]
+			if 0 <= di < n and 0 <= dj < m :
+				# 벽을 안 부쉈을 때
+				# 그럴때에 해당 노드는 방문 안 했어야 함.
+				if wall < 1 and not visited[0][di][dj] :
+					visited[0][di][dj] = True
+					queue.append((di, dj, wall, count + 1))
+				# 벽을 부쉈으면 더 부수면 안 됨
+				elif wall > 0 and not visited[1][di][dj] and matrix[di][dj] != 1 :
+					visited[1][di][dj] = True
+					queue.append((di, dj, wall, count + 1))
+
+for _ in range(7) :
+	n,m = map(int, file.readline().split())
+	matrix = [list(map(int, file.readline().strip("\n"))) for _ in range(n)]
+	answer = int(file.readline())
+	file.readline()
+
+	print(n, m, answer)
+	for mat in matrix : 
+		print(mat)
+
+	result = -1
+	dx = [(1, 0), (0, 1), (0, -1), (-1, 0)]
+	# 중첩상태 확인을 위해 2차원 배열 두 개를 포개서 3차원으로 만듬.
+	visited = [[[False for _ in range(m)] for _ in range(n)] for _ in range(2)]
+	visited[0][0][0] = visited[1][0][0] = True
+	bfs(deque([(0, 0, 0, 1)]))
+	print(result)
+
+	print()
+
+
+file.close()
+
+# 백준 제출용
+# from sys import stdin
+# from collections import deque
+
+# def bfs(queue) : 
+# 	global result
+# 	while queue : 
+# 		i, j, wall, count = queue.popleft()
+
+# 		if i == n - 1 and j == m - 1 :
+# 			result = min(result, count) if result != -1 else count
+# 			return
+
+# 		if matrix[i][j] == 1 : 
+# 			wall += 1
+
+# 		for d in dx : 
+# 			di = i + d[0]
+# 			dj = j + d[1]
+# 			if 0 <= di < n and 0 <= dj < m :
+# 				# 벽을 안 부쉈을 때
+# 				# 그럴때에 해당 노드는 방문 안 했어야 함.
+# 				if wall < 1 and not visited[0][di][dj] :
+# 					visited[0][di][dj] = True
+# 					queue.append((di, dj, wall, count + 1))
+# 				# 벽을 부쉈으면 더 부수면 안 됨
+# 				elif wall > 0 and not visited[1][di][dj] and matrix[di][dj] != 1 :
+# 					visited[1][di][dj] = True
+# 					queue.append((di, dj, wall, count + 1))
+
+# n,m = map(int, stdin.readline().split())
+# matrix = [list(map(int, stdin.readline().strip("\n"))) for _ in range(n)]
+
+# result = -1
+# dx = [(1, 0), (0, 1), (0, -1), (-1, 0)]
+# # 중첩상태 확인을 위해 2차원 배열 두 개를 포개서 3차원으로 만듬.
+# visited = [[[False for _ in range(m)] for _ in range(n)] for _ in range(2)]
+# visited[0][0][0] = visited[1][0][0] = True
+# bfs(deque([(0, 0, 0, 1)]))
+# print(result)
 
 
 # # 해결방안 4번 : 시간초과
