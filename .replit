@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./dfs/벽부수고이동하기.py"
+run = "python3 ./dfs/알파벳.py"
