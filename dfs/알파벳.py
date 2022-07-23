@@ -5,15 +5,15 @@ file = open("./dfs/알파벳tc.txt", "r")
 
 def dfs(i, j, visited) : 
 	global result
+	result = max(result, visited.count(True))
 	for d in dx : 
 		di = i + d[0]
 		dj = j + d[1]
 		# 방문할 알파벳이 방문한 적이 없어야 함.
 		if 0 <= di < r and 0 <= dj < c and not visited[ord(matrix[di][dj]) - 65] :
-			temp = visited
-			temp[ord(matrix[di][dj]) - 65] = True
-			dfs(di, dj, temp)
-	result = max(result, visited.count(True))
+			visited[ord(matrix[di][dj]) - 65] = True
+			dfs(di, dj, visited)
+			visited[ord(matrix[di][dj]) - 65] = False
 			
 
 for _ in range(3) : 
@@ -31,6 +31,37 @@ for _ in range(3) :
 	dfs(0, 0, visited)
 	print(result)
 file.close()
+
+# 백준 제출용
+# 해결방안 3번 : 
+# DFS
+# 시간초과 해결을 위해 Bool list(26)을 만들 예정
+import sys
+
+sys.setrecursionlimit(10 ** 9)
+
+def dfs(i, j, visited) : 
+	global result
+	result = max(result, visited.count(True))
+	for d in dx : 
+		di = i + d[0]
+		dj = j + d[1]
+		# 방문할 알파벳이 방문한 적이 없어야 함.
+		if 0 <= di < r and 0 <= dj < c and not visited[ord(matrix[di][dj]) - 65] :
+			visited[ord(matrix[di][dj]) - 65] = True
+			dfs(di, dj, visited)
+			visited[ord(matrix[di][dj]) - 65] = False
+			
+
+r, c = map(int, sys.stdin.readline().split())
+matrix = [list(sys.stdin.readline().strip("\n")) for _ in range(r)]
+
+dx = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+visited = [False for _ in range(26)]
+visited[ord(matrix[0][0]) - 65] = True
+result = 0
+dfs(0, 0, visited)
+print(result)
 
 # # 해결방안 2번 :
 # # BFS
