@@ -1,20 +1,23 @@
 # 해결방안 3번 : 
 # DFS
-# 시간초과 해결을 위해 Bool list(26)을 만들 예정
+from collections import deque
+
+
 file = open("./dfs/알파벳tc.txt", "r")
 
-def dfs(i, j, visited) : 
+def dfs(i, j, alpha) :
 	global result
-	result = max(result, visited.count(True))
 	for d in dx : 
 		di = i + d[0]
 		dj = j + d[1]
-		# 방문할 알파벳이 방문한 적이 없어야 함.
-		if 0 <= di < r and 0 <= dj < c and not visited[ord(matrix[di][dj]) - 65] :
-			visited[ord(matrix[di][dj]) - 65] = True
-			dfs(di, dj, visited)
-			visited[ord(matrix[di][dj]) - 65] = False
-			
+		if 0 <= di < r and 0 <= dj < c and not alpha[ord(matrix[di][dj]) - 65] :
+			alpha[ord(matrix[di][dj]) - 65] = True
+			dfs(di, dj, alpha)
+			alpha[ord(matrix[di][dj]) - 65] = False
+	print(result, alpha.count(True))
+	if alpha.count(True)== 4:
+		print(alpha)
+	result = max(result, alpha.count(True))
 
 for _ in range(3) : 
 	r, c = map(int, file.readline().split())
@@ -24,11 +27,10 @@ for _ in range(3) :
 
 	print(r, c, answer)
 
-	dx = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-	visited = [False for _ in range(26)]
-	visited[ord(matrix[0][0]) - 65] = True
 	result = 0
-	dfs(0, 0, visited)
+	alpha = [False for _ in range(26)]
+	dx = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+	dfs(0, 0, alpha)
 	print(result)
 file.close()
 
@@ -206,7 +208,30 @@ print(result)
 # # for mat in matrix :
 # # 	print(mat)
 
-# # result = 0
-# # dx = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-# # dfs(0, 0, [matrix[0][0]])
-# # print(result)
+# file.close()
+
+# 백준 제출용
+# import sys
+# from collections import deque
+
+# sys.setrecursionlimit(10 ** 9)
+
+# def dfs(i, j, path) :
+# 	global result
+# 	for d in dx : 
+# 		di = i + d[0]
+# 		dj = j + d[1]
+# 		if 0 <= di < r and 0 <= dj < c and not alpha[ord(matrix[di][dj]) - 65] :
+# 			alpha[ord(matrix[di][dj])] = True
+# 			dfs(di, dj, path)
+# 			alpha[ord(matrix[di][dj])] = False
+# 	result = max(result, len(path))
+
+# r, c = map(int, stdin.readline().split())
+# matrix = [list(stdin.readline().strip("\n")) for _ in range(r)]
+
+# result = 0
+# alpha = [False for _ in range(26)]
+# dx = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+# dfs(0, 0, alpha)
+# print(result)
