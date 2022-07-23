@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./dfs/알파벳.py"
+run = "python3 ./dfs/아기상어.py"
