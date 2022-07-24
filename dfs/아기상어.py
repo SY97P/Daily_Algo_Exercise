@@ -1,50 +1,115 @@
+# 해결방안 1번 :
+# dfs
+# 1) 일단 무게는 무시하고 그냥 dfs, bfs 탐색이 잘 되는지부터 확인
+# 1-1) dfs에선 visited 개념이 없어져야 함
+# 1-2) bfs에선 visited 개념이 필요함(bfs 종료 후 유지할 필요 없음)
+# 2) 무게 조건 설정 (아기상어 무게, 먹은 물고기 수)
+# 3) 무게 증가 제어
+# 4) 예외처리
+from collections import deque
 
-# 1번 : dfs로 이동만해서 몇번 움직이는지 반환하도록 함
-# 2번 : weight가 어떻게 변화하는지 따옴
 file = open("./dfs/아기상어tc.txt", "r")
 
-def dfs(i, j, visited, minimap, fishes, weight, habitat) : 
-	print(i, j, visited[i][j], minimap[i][j], fishes, weight)
-	if fishes <= 0 : 
-		return 1
+def bfs(queue, matrix) : 
+	while queue :
+		i, j, visited, count = queue.popleft()
 
-	# 주변에 0이 아닌게 있긴 함
-	only0 = True
-	for d in dx : 
-		di = i + d[0]
-		dj = j + d[1]
-		if 0 <= di < n and 0 <= dj < n and not visited[di][dj] and matrix[di][dj] != 0 and matrix[di][dj] <= weight :
-			only0 = False
-			temp = minimap[di][dj]
-			minimap[di][dj] = 0
-			visited[di][dj] = True
-			return 1 + dfs(di, dj, visited, minimap, fishes - 1, weight, habitat + 1)
-			visited[di][dj] = False
-			minimap[di][dj] = temp
+		# 종료조건
+		# 해당좌표에 값이 있으면 종료
+		# return (좌표, 이동한 거리)
+		if matrix[i][j] != 0 : 
+			return (i, j), count
 
-	# 주변에 모두 0임
-	if only0 :
 		for d in dx : 
 			di = i + d[0]
 			dj = j + d[1]
 			if 0 <= di < n and 0 <= dj < n and not visited[di][dj] :
 				visited[di][dj] = True
-				return 1 + dfs(di, dj, visited,  minimap, fishes, weight, habitat)
+				queue.append((di, dj, visited, count + 1))
 				visited[di][dj] = False
+	return -1
+			
 
-for tc in range(6) : 
+# def dfs(i, j, matrix, visited, fishes) : 
+	# print(i, j, matrix[i][j], visited[i][j], fishes)
+def dfs(i, j, matrix, fishes, weight, prey) : 
+	print(i, j, matrix[i][j], fishes)
+
+	# 종료 조건
+	# 더이상 잡을 물고기가 없으면 됨. 
+	if fishes <= 0 : 
+		# 여기부터 다시 재귀를 되돌아가면서 1씩 증가해서 반환
+		return 0
+
+	# 주변에 0인 값이 하나도 없는지
+	is_no_zero = True
+	# 사방을 돌아다니면서 0이 아닌 곳을 찾아서 이동함
+	for d in dx : 
+		di = i + d[0]
+		dj = j + d[1]
+		# 방문한 적 없으면서 0이 아닌 곳
+		# 1-1) -> 방문한 곳은 이미 0 (visited 필요 없음)
+		# 2) 무게 조건 설정 (아기상어가 해당 물고기 무게보다 크거나 같아야 이동 가능)
+		if 0 <= di < n and 0 <= dj < n and matrix[di][dj] != 0 and weight >= matrix[di][dj] :
+			# 0이 아닌 곳이 하나는 있다.
+			# 이동만 했더라도 어쨌든 0을 뛰어넘지는 않아도 됨.
+			is_no_zero = False
+			# 이쪽 방향으로 dfs를 수행한다.
+			# 해당 물고기를 먹지 못하는 경우 (무게가 같을 때)
+			if weight == matrix[di][dj] : 
+				# 해당 물고기를 0으로 만들지 말고, 남은 물고기 개수를 줄이지도 말고
+				# 그냥 이동만 함
+				return 1 + dfs(di, dj, matrix, fishes)
+			# 해당 물고기를 먹은 경우
+			# 해당 물고기를 0으로 만들어버림
+			else : 
+				temp = matrix[di][dj]
+				matrix[di][dj] = 0
+				# return 1 + dfs(di, dj, matrix, visited, fishes - 1)
+				return 1 + dfs(di, dj, matrix, fishes - 1)
+				# 재귀 복귀 시 원상복구
+				matrix[di][dj] = temp
+
+	# 사방을 돌아봐도 0이 아닌 값이 하나도 없음
+	# 그냥 0인 곳 어딘가로 이동해야 함. 
+	# bfs 사용
+	if is_no_zero :
+		# 1-2)
+		# 한 번의 bfs에서 다음 좌표를 찾을 수 있다는 보장 가능
+		# 따라서 bfs마다 False로 초기화된 (시작좌표 제외) visited 필요
+		visited = [[False for _ in range(n)] for _ in range(n)]
+		visited[i][j] = True
+		return_Value = bfs(deque([(i, j, visited, 0)]), matrix)
+		if return_Value != -1 :
+			(next_i, next_j), dist = return_Value
+			print("next_i, next_j, dist : ", next_i, next_j, dist)
+		else : 
+			return 0
+
+		# bfs로 구한 가장 가까운 물고기 위치로 이동
+		# 기존 방식으로는 한 칸씩 움직였기 때문에 +1이지만 지금은 +dist 여야 함.
+		# 이동할 좌표에서 다시 dfs를 해야 함. 
+		# 해당좌표를 이미 진입했다는 가정이므로 visited, matrix, fishes를 조정
+		temp = matrix[next_i][next_j]
+		matrix[next_i][next_j] = 0
+		# visited[next_i][next_j] = True
+		# return dist + dfs(next_i, next_j, matrix, visited, fishes - 1)
+		# visited[next_i][next_j] = False
+		return dist + dfs(next_i, next_j, matrix, fishes - 1)
+		matrix[next_i][next_j] = temp
+
+for _ in range(6) : 
 	n = int(file.readline())
-	start_i = start_j = 0
 	fishes = 0
+	start_i = start_j = 0
 	matrix = []
 	for i in range(n) : 
 		line = list(map(int, file.readline().split()))
-		for idx, li in enumerate(line) : 
+		for j, li in enumerate(line) : 
 			if li != 0 and li != 9 : 
 				fishes += 1
-			if li == 9 :
-				start_i = i
-				start_j = idx
+			if li == 9 : 
+				start_i, start_j = i, j
 		matrix.append(line)
 	answer = int(file.readline())
 	file.readline()
@@ -54,17 +119,17 @@ for tc in range(6) :
 	for mat in matrix : 
 		print(mat)
 
-	if fishes > 0 :
-		weight = 9
-		dx = [(-1, 0), (0, -1), (0, 1), (1, 0)]
-		visited = [[False for _ in range(n)] for _ in range(n)]
-		visited[start_i][start_j] = True
-		result = dfs(start_i, start_j, visited, matrix, fishes, weight, 0)
-		print(result)
-	else : 
-		print(0)
-
-
+	dx = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+	# 1-1)
+	# visited = [[False for _ in range(n)] for _ in range(n)]
+	# visited[start_i][start_j] = True
+	matrix[start_i][start_j] = 0
+	# result = dfs(start_i, start_j, matrix, visited, fishes)
+	# 2) 무게조건 설정
+	weight, prey = 2, 0
+	result = dfs(start_i, start_j, matrix, fishes, weight, prey)
+	print("result : ", result)
+		
 	print()
 
 file.close()
