@@ -9,6 +9,7 @@
 #	3-1) 끝까지 못먹는 물고기 수를 계산해서 종료조건 재설정
 # 4) 예외처리
 #	4-1) bfs 시 먹을 수 있는 애들 중 가장 위, 왼쪽에 있는 애를 선택하도록 수정
+
 from collections import deque
 
 file = open("./dfs/아기상어tc.txt", "r")
