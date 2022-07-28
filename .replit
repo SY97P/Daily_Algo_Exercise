@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./dfs/이분그래프.py"
+run = "python3 ./bfs/인구이동.py"
