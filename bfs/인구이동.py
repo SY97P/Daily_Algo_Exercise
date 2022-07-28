@@ -17,6 +17,7 @@ def movement(union) :
 	for nation in union : 
 		i, j = nation
 		matrix[i][j] = sum
+		united[i][j] = True
 
 # 연합 만들어주기
 def bfs(queue) : 
@@ -29,7 +30,7 @@ def bfs(queue) :
 		for d in dx : 
 			di = i + d[0]
 			dj = j + d[1]
-			if 0 <= di < n and 0 <= dj < n and not visited[di][dj] and l <= abs(matrix[di][dj] - matrix[i][j]) <= r :
+			if 0 <= di < n and 0 <= dj < n and not united[di][dj] and not visited[di][dj] and l <= abs(matrix[di][dj] - matrix[i][j]) <= r :
 				visited[di][dj] = True
 				unions[index].append((di, dj))
 				queue.append((di, dj))
@@ -49,6 +50,7 @@ for tc in range(5) :
 		print(mat)
 
 	days = 0
+	united = [[False for _ in range(n)] for _ in range(n)]
 	while True :
 		# 연합 list
 		unions = []
@@ -83,6 +85,9 @@ for tc in range(5) :
 		for union in unions : 
 			if len(union) > 1 :
 				movement(union)
+
+		for mat in matrix :
+			print(mat)
 	
 	
 	print(days)
