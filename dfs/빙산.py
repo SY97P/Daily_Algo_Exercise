@@ -63,6 +63,7 @@ for tc in range(3) :
 			if li != 0 :
 				icebug.append((i, j, li))
 		matrix.append(line)
+
 	answer = int(file.readline())
 	file.readline()
 
@@ -210,4 +211,3 @@ file.close()
 
 # 	# year 증가
 # 	year += 1
-	
