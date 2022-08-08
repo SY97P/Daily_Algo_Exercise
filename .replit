@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./dfs/트리의지름.py"
+run = "python3 ./dfs/트리의지름2.py"
