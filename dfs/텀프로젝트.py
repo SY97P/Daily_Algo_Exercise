@@ -1,5 +1,7 @@
+
 file = open("./dfs/텀프로젝트tc.txt","r")
 
+result = []
 tcs = int(file.readline())
 for tc in range(tcs) :
 	n = int(file.readline())
@@ -9,38 +11,65 @@ for tc in range(tcs) :
 	print(n, choices)
 
 	def dfs(num) :
+		global cycle_key
+		global not_team
+
+		print(num)
+
+		is_cycle = False
+		
 		# 나 자신을 선택함
 		if num == choices[num] :
-			is_team[num] = True
+			is_team[num] = 1
+			# cycle_key = num
+			is_cycle = True
+			print("select himself")
 		# 나 자신이 아닌 것을 선택함.
 		else : 
-			if num in path : 
-				for i in range(len(path)-1, -1, -1) : 
-					if path[i] == num : 
-						is_team[num] = True
-						break
-					is_team[path[i]] = True
-			else :
-				path.append(num)
-				dfs(choices[num])
+			# 사이클 확인 선행
+			if num in path :
+				cycle_key = num
+				print("cycle occur")
+			else : 
+				# dfs를 진행하되, 갈 곳이 0이어야 만 감
+				if is_team[choices[num]] == 0 :
+					path.add(num)
+					print("dfs going")
+					dfs(choices[num])
+
+		# 사이클 발생
+		# 현재 num이 cycle_key와 겹치게 되는 구간까지 팀원 처리
+		print(num , is_team[num])
+		
+		if is_team[num] == 0 :
+			is_team[num] = -1 if not_team else 1
+		if num == cycle_key :
+			not_team = True
+
+		if is_cycle :
+			cycle_key = num
 			
-		return is_team[num]
+		print(is_team)
+			
+				
 
-
-	is_team = [False for _ in range(n+1)]
+	is_team = [0 for _ in range(n+1)]
 	for number in range(1, n+1) :
-		if not is_team[number] : 
-			path = []
-			# print(number)
+		if is_team[number] == 0 : 
+			path = set()
+			cycle_key = -1
+			not_team = False
 			dfs(number)
 
-	print(is_team.count(False) - 1)
+	print(" ", is_team)
+	print(n - is_team.count(1))
+	result.append(n - is_team.count(1))
+	print()
 	
 file.readline()
-print()
+print("answer")
 for tc in range(tcs) : 
-	print(int(file.readline()))
+	print(result[tc], int(file.readline()))
+print()
 	
 file.close()
-
-# 백준 제출용
