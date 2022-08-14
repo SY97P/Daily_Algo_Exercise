@@ -50,43 +50,43 @@ for idx, ml in enumerate(mlist) :
 file.close()
 
 # 백준 제출용
-import sys
+# import sys
 
-sys.setrecursionlimit(10 ** 9)
+# sys.setrecursionlimit(10 ** 9)
 
-n = int(sys.stdin.readline())
-nlist = list(map(int, sys.stdin.readline().split()))
-m = int(sys.stdin.readline())
-mlist = list(map(int, sys.stdin.readline().split()))
-answer = list(map(int, sys.stdin.readline().split()))
+# n = int(sys.stdin.readline())
+# nlist = list(map(int, sys.stdin.readline().split()))
+# m = int(sys.stdin.readline())
+# mlist = list(map(int, sys.stdin.readline().split()))
+# answer = list(map(int, sys.stdin.readline().split()))
 
-dic = {nl : 0 for nl in nlist}
-for nl in nlist : 
-	dic[nl] += 1
+# dic = {nl : 0 for nl in nlist}
+# for nl in nlist : 
+# 	dic[nl] += 1
 
-keylist = list(dic.keys())
-keylist.sort()
+# keylist = list(dic.keys())
+# keylist.sort()
 
-for ml in mlist : 
-	# print(idx + 1, "번째 m ITEM")
-	left, right = 0, len(keylist) - 1
-	exist = False
-	while left <= right : 
-		mid = (left + right) // 2
+# for ml in mlist : 
+# 	# print(idx + 1, "번째 m ITEM")
+# 	left, right = 0, len(keylist) - 1
+# 	exist = False
+# 	while left <= right : 
+# 		mid = (left + right) // 2
 
-		# print(keylist[mid], ml)
-		# print(left, right)
+# 		# print(keylist[mid], ml)
+# 		# print(left, right)
 	
-		if keylist[mid] == ml : 
-			exist = True
-			break
-		elif keylist[mid] < ml : 
-			left = mid + 1
-		else : 
-			right = mid - 1
+# 		if keylist[mid] == ml : 
+# 			exist = True
+# 			break
+# 		elif keylist[mid] < ml : 
+# 			left = mid + 1
+# 		else : 
+# 			right = mid - 1
 
-	if exist : 
-		print(dic[ml], end = " ")
-	else : 
-		print(0, end = " ")
+# 	if exist : 
+# 		print(dic[ml], end = " ")
+# 	else : 
+# 		print(0, end = " ")
 	
