@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./이진탐색/공유기설치.py"
+run = "python3 ./이진탐색/가장긴증가하는부분수열2.py"
