@@ -20,20 +20,3 @@ for _ in range(3) :
 	print(max(dp))
 
 file.close()
-
-# 백준 제출용
-import sys
-
-sys.setrecursionlimit(10 ** 9)
-
-n = int(sys.stdin.readline())
-nlist = list(map(int, sys.stdin.readline().split()))
-
-dp = [1 for _ in range(n)]
-
-for i, nl in enumerate(nlist) :
-	for j in range(i) :
-		if nl > nlist[j] : 
-			dp[i] = max(dp[i], dp[j] + 1)
-
-print(dp)
