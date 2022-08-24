@@ -10,7 +10,7 @@ def lower_count(mid) :
 
 def bin(n, k) : 
 	answer = 0
-	left, right = 1, k
+	left, right = 1, n ** 2
 	while left <= right : 
 		mid = (left + right) // 2
 
@@ -40,8 +40,6 @@ for tc in range(12) :
 file.close()
 
 # 백준 제출용
-
-
 # def lower_count(mid) :
 # 	result = 0
 

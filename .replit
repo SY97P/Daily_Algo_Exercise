@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./이진탐색/K번째수.py"
+run = "python3 ./이진탐색/용액.py"
