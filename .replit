@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./bfs/중량제한.py"
+run = "python3 ./이진탐색/중량제한.py"
