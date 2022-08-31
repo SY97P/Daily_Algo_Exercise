@@ -1,50 +1,41 @@
-from itertools import combinations
-def solution(file) : 
-	for _ in range(1) : 
-		n = int(file.readline())
-		arr = list(map(int, file.readline().split()))
-		answer = int(file.readline())
+file = open("./백준_그리디/저울tc.txt", "r")
 
-		arr.sort()
-		
-		print(n, arr, answer)
 
-		index = 1
+for tc in range(1) :
+	n = int(file.readline())
+	weights = list(map(int, file.readline().split()))
+	answer = int(file.readline())
+	file.readline()
 
-		combi = set([])
-		for i in range(1, len(arr)) :
-			lst = list(map(sum, combinations(arr, i)))
-			for l in lst :
-				combi.add(l)
-		print(combi)
+	weights.sort()
 
-		while True :
-			if index not in combi :
-				print(index)
-				break
-			index += 1
+	print(n, answer)
+	print(weights)
+
+	dp = set()
+
+	for weight in weights :
+		if not dp : 
+			dp.add(weight)
+			continue
+		temp = set()
+		for dp_item in dp :
+			print("dp_item : ", dp_item)
+			temp.add(dp_item + weight)
+		dp.update(temp)
+		print(weight, dp)
+
+	print(dp)
+
+	index = 1
+	for dp_item in list(dp) : 
+		if dp_item != index :
+			print(index)
+			break
+		index += 1
+
+
+file.close()
 
 # 백준 제출용
-n = int(input())
-arr = list(map(int, input().split()))
-index = 1
-combi = set([])
 
-for i in range(1, len(arr)) :
-	for l in list(map(sum, combinations(arr, i))) :
-		combi.add(l)
-
-while True :
-	if index not in combi :
-		print(index)
-		break
-	index += 1
-	
-		
-
-def main() : 
-	file = open("./백준_그리디/저울tc.txt", "r")
-	print("solution : ", solution(file))
-	file.close()
-
-main()

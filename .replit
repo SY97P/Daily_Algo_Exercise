@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./백준_그리디/수묶기re.py"
+run = "python3 ./백준_그리디/저울.py"
