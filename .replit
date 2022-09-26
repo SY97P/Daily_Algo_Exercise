@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D2/백만장자프로젝트.py"
+run = "python3 ./SWEA/D3/1일차View.py"
