@@ -1,6 +1,2 @@
 language = "python3"
-<<<<<<< HEAD
-run = "python3 ./SWEA/D2/달팽이숫자.py"
-=======
-run = "python3 ./SWEA/D2/최빈수구하기.py"
->>>>>>> d5ded7ce6bcee8d26db399db2cf21051e77a1948
+run = "python3 ./SWEA/D1/연월일달력.py"
