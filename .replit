@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D2/패턴마디의길이.py"
+run = "python3 ./SWEA/D2/파스칼의삼각형.py"
