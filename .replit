@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D4/보급로.py"
+run = "python3 ./SWEA/D4/격자판의숫자이어붙이기.py"
