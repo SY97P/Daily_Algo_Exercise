@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D2/두개의숫자열.py"
+run = "python3 ./SWEA/D4/혁진이의프로그램검증BFS.py"
