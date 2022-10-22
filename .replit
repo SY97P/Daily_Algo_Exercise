@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D2/숫자배열회전.py"
+run = "python3 ./SWEA/D3/원재의메모리복구하기.py"
