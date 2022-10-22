@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D3/회문1.py"
+run = "python3 ./SWEA/D3/부분수열의합.py"
