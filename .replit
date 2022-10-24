@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D3/최장경로.py"
+run = "python3 ./SWEA/D4/정사각형방.py"
