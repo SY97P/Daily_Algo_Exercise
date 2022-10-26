@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./SWEA/D3/햄버거다이어트.py"
+run = "python3 ./SWEA/D4/자기방으로돌아가기.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
