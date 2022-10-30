@@ -10,28 +10,21 @@ t = int(input())
 
 for tc in range(1, t + 1) : 
 	n = int(input())
-	jammin = [tuple(map(int, input().split())) for _ in range(n)]
 
-	jammin.sort()
+	corr = [0 for _ in range(200)]
 
-	# print(jammin)
+	for _ in range(n) : 
+		start, end = map(int, input().split())
 
-	time = 0
+		temp = min(start, end)
+		end = (max(start, end) - 1)//2
+		start = (temp - 1)//2
 
-	while jammin : 
-		time += 1
-		curr = jammin.pop()[0]
+		for i in range(start, end + 1) : 
+			corr[i] += 1
 
-		toge = []
-		
-		for i in range(len(jammin) - 1, -1, -1) :
-			if curr >= jammin[i][1] : 
-				toge.append(i)
-				curr = jammin[i][0]
+		# print(corr)
 
-		for man in toge : 
-			jammin.pop(man)
-
-	print("#%d %d" % (tc, time))
+	print("#%d %d" % (tc, max(corr)))
 
 file.close()
