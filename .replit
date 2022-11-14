@@ -1,2 +1,2 @@
 language = "python3"
-run = "python3 ./SWEA/D3/수의새로운연산.py"
+run = "python3 ./SWEA/D3/단순2진암호코드.py"
