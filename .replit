@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./SWEA/D3/String.py"
+run = "python3 ./SWEA/D3/거듭제곱.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
