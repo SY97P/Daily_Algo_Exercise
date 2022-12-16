@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./SWEA/D3/재미있는오셀로게임.py"
+run = "python3 ./SWEA/D3/String.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
