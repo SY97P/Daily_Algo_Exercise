@@ -1,4 +1,4 @@
 language = "python3"
-run = "python3 ./SWEA/D4/중위순회.py"
+run = "python3 ./SWEA/D3/새샘이의753게임.py"
 # language = "java"
 # run = "java ./SWEA/D3/Knapsack01.java"
