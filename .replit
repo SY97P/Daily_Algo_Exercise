@@ -1,4 +1,4 @@
 # language = "python3"
 # run = "python3 ./SWEA/D4/계산기3.py"
 language = "java"
-run = "java ./SWEA/D4/계산기3.java"
+run = "java ./SWEA/D3/민석이의과제체크하기.java"
