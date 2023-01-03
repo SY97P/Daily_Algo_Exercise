@@ -1,4 +1,4 @@
-# language = "python3"
-# run = "python3 ./SWEA/D4/계산기3.py"
-language = "java"
-run = "java ./SWEA/D3/암호문3.java"
+language = "python3"
+run = "python3 ./SWEA/D5/이상한피라미드탐험.py"
+# language = "java"
+# run = "java ./SWEA/D5/이상한피라미드탐험.java"
