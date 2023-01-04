@@ -1,4 +1,4 @@
 language = "python3"
-run = "python3 ./백준/dp/피보나치수1.py"
+run = "python3 ./백준/dp/신나는함수실행.py"
 # language = "java"
 # run = "java ./SWEA/D5/이상한피라미드탐험.java"
