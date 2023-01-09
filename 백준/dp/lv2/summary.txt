@@ -8,4 +8,8 @@
 		- d[i][j] : i파일에서 j파일까지 합쳤을 때 필요한 최소 비용
 		- d[i][j] = min(d[i][k] + d[k][j]) + dp[i][j-1] + f[i] (i <= k < j)
 
+	* 행렬 곱셈 순서
+		- pypy3, java11 로 풀이
+		- d[i][j] = min(d[i][k] + d[k+1][j] + mat[i][0] * mat[k][1] * mat[j][1])
+
 	* 

@@ -1,4 +1,4 @@
-language = "python3"
-run = "python3 ./백준/dp/lv2/행렬곱셈순서.py"
-# language = "java"
-# run = "java ./SWEA/D5/이상한피라미드탐험.java"
+# language = "python3"
+# run = "python3 ./백준/dp/lv2/행렬곱셈순서.py"
+language = "java"
+run = "java ./백준/dp/lv2/행렬곱셈순서.java"
