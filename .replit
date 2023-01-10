@@ -1,4 +1,4 @@
 language = "python3"
-run = "python3 ./백준/dp/역추적/1로만들기2.py"
+run = "python3 ./백준/dp/역추적/가장긴증가하는부분수열4.py"
 # language = "java"
 # run = "java ./백준/dp/lv2/행렬곱셈순서.java"
