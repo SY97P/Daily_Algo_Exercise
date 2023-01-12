@@ -1,4 +1,4 @@
 language = "python3"
-run = "python3 ./백준/dp/역추적/LCS2.py"
+run = "python3 ./백준/dp/역추적/경찰차.py"
 # language = "java"
-# run = "java ./백준/dp/lv2/행렬곱셈순서.java"
+# run = "java ./백준/dp/역추적/경찰차.java"
