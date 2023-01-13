@@ -1,4 +1,4 @@
 language = "python3"
-run = "python3 ./백준/dp/역추적/최소비용구하기2.py"
+run = "python3 ./백준/dp/역추적/플로이드.py"
 # language = "java"
 # run = "java ./백준/dp/역추적/경찰차.java"

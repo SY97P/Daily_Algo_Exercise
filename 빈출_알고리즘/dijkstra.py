@@ -1,50 +1,53 @@
-# 1
-# 9
-# 4
-
-# 다익스트라 알고리즘은 
-# 1. 우선순위 큐 (힙큐) 사용
-# 2. 중복확인 안 해도 됨
-# 3. 인접리스트 만들 때 dict 쓰면 시간초과 남 -> list 사용
-# 4. sys.stdin.readline 안 쓰면 시간초과 남 -> 적당히 데이터 많겠다 싶으면 쓸 것.
-
-file = open("./백준/dp/역추적/최소비용구하기2.txt", "r")
-
-input = file.readline
-
 import heapq
 
-def solve() : 
-	q = []
-	heapq.heappush(q, (dp[start], start))
+def dijstra(graph, start) : 
+	distance = {node : float('inf') for node in graph}
+	distance[start] = 0
 
-	while q : 
-		cost, city = heapq.heappop(q)
+	queue = []
+	heapq.heappush(queue, [distance[start], start])
 
-		if cost > dp[end] : 
+	while queue : 
+		curr_dist, curr_dest = heapq.heappop(queue)
+
+		# 기존 거리보다 더 큰 값은 볼 필요가 없음
+		if curr_dist > distance[curr_dest] : 
 			continue
 
-		for next_cost, next_city in adj[city] :
-			if next_cost + cost < dp[next_city] : 
-				dp[next_city] = next_cost + cost
-				heapq.heappush(q, (dp[next_city], next_city))
+		for next_dest, next_dist in graph[curr_dest].items() : 
+			# 다음 경로까지 거리
+			dist = next_dist + curr_dist
+			# 다음 경로까지 거리가 기존에 구한 다음 노드로의 거리보다 작으면 갱신 및 큐에 추가
+			if dist < distance[next_dest] : 
+				distance[next_dest] = dist
+				heapq.heappush(queue, [dist, next_dest])
 
-n = int(input())
-m = int(input())
+	return distance
 
-adj = [[] for _ in range(n + 1)]
-for _ in range(m) : 
-	a, b, c = map(int, input().split())
-	adj[a].append((c, b))
+def solution(n, paths, gates, summits):
+	graph = {i : dict() for i in range(1, n+1)}
+	for x, y, c in paths :
+		graph[x][y] = c
+		graph[y][x] = c
 
-start, end = map(int, input().split())
+	for gate in gates : 
+		print(dijstra(graph, gate))
+		
+	
+	
+		
 
-dp = [float('inf') for _ in range(n+1)]
-dp[start] = 0
+def main() :
+	testcase = [
+		[6,[[1, 2, 3], [2, 3, 5], [2, 4, 2], [2, 5, 4], [3, 4, 4], [4, 5, 3], [4, 6, 1], [5, 6, 1]],[1, 3],[5],[5, 3]],
+		[7,[[1, 4, 4], [1, 6, 1], [1, 7, 3], [2, 5, 2], [3, 7, 4], [5, 6, 6]],[1],[2, 3, 4],[3, 4]],
+		[7,[[1, 2, 5], [1, 4, 1], [2, 3, 1], [2, 6, 7], [4, 5, 1], [5, 6, 1], [6, 7, 1]],[3, 7],[1, 5],[5, 1]],
+		[5,[[1, 3, 10], [1, 4, 20], [2, 3, 4], [2, 4, 6], [3, 5, 20], [4, 5, 6]],[1, 2],[5],[5, 6]]
+	]
 
-solve()
+	for n, paths, gates, summits, result in testcase :
+		print("내가 만든 솔루션 : ", solution(n, paths, gates, summits))
+		print("정답 : ", result)
+		print()
 
-print(dp[end])
-print(dp)
-
-file.close()
+main()
