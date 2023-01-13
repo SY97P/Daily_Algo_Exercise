@@ -16,6 +16,7 @@ input = sys.stdin.readline
 def printDP() : 
 	for i in range(1, n + 1) : 
 		for d in dp[i][1:] :
+			# 도달 경로가 없는 경우 초기값 나옴 -> 0 으로 바꿔서 출력
 			if d == float('inf') : 
 				print(0, end = " ")
 				continue
@@ -23,11 +24,14 @@ def printDP() :
 		print()
 
 def solve() : 
+	# 인접행렬 DP에 매핑
 	for i in range(1, n + 1) : 
 		for j in range(1, n + 1) :
 			dp[i][j] = adj[i][j]
-			
+
+	# 분할 정복
 	for waypoint in range(1, n + 1) : 
+		# 자기 자신으로 가는 경우는 무조건 최소 비용 0 
 		dp[waypoint][waypoint] = 0
 		for start in range(1, n + 1) : 
 			for end in range(1, n + 1) : 

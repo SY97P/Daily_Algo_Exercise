@@ -33,70 +33,59 @@ file = open("./백준/dp/역추적/플로이드2.txt", "r")
 
 input = file.readline
 
-import heapq
-# import sys
+import sys
 
-# input = sys.stdin.readline
-
-def printTr() : 
-	for i in range(1, n + 1) : 
-		for pa in path[i][1:] :
-			print(len(pa), * pa[::-1])
+input = sys.stdin.readline
 
 def printDP() : 
 	for i in range(1, n + 1) : 
-		print(*dp[i][1:])
+		for j in range(1, n + 1) : 
+			if dp[i][j] != float('inf') :
+				print(dp[i][j], end = " ")
+			else: 
+				print(0, end = " ")
+		print()
 
-def trace(start, end) :
-	cost, city = dp[start][end], end
+def trace() : 
+	for start in range(1, n+1) : 
+		for end in range(1, n+1) :
+			if dp[start][end] in (0, float('inf')): 
+				print(0)
+				continue
+			path = [start] + tracking(start, end) + [end]
+			print(len(path), *path)
 
-	while city != start : 
-		for pre_cost, pre_city in rev[city] : 
-			if dp[start][city] - pre_cost == dp[start][pre_city] : 
-				path[start][end].append(pre_city)
-				cost, city = pre_cost, pre_city
-				break 
+def tracking(start, end) :
+	if track[start][end] == float('inf') :
+		return []
 
-def solve(start, end) : 
-	q = [(dp[start][start], start)]
-	heapq.heapify(q)
+	way = track[start][end]
+	return tracking(start, way) + [way] + tracking(way, end)
 
-	while q : 
-		cost, city = heapq.heappop(q)
-
-		if cost > dp[start][end] : 
-			continue
-
-		for next_cost, next_city in adj[city] : 
-			if next_cost + cost < dp[start][next_city] : 
-				dp[start][next_city] = next_cost + cost
-				heapq.heappush(q, (dp[start][next_city], next_city))
+def solve() : 
+	for way in range(1, n + 1) : 
+		dp[way][way] = 0
+		for start in range(1, n + 1) : 
+			for end in range(1, n + 1) : 
+				if dp[start][end] > dp[start][way] + dp[way][end] : 
+					dp[start][end] = dp[start][way] + dp[way][end]
+					track[start][end] = way
 
 n = int(input())
 m = int(input())
 
-adj = [[] for _ in range(n + 1)]
-rev = [[] for _ in range(n + 1)]
+track = [[float('inf') for _ in range(n + 1)] for _ in range(n + 1)]
+adj = [[float('inf') for _ in range(n + 1)] for _ in range(n + 1)]
+dp = [[float('inf') for _ in range(n + 1)] for _ in range(n + 1)]
 for _ in range(m) : 
 	a, b, c = map(int, input().split())
-	adj[a].append((c, b))
-	rev[b].append((c, a))
+	adj[a][b] = min(adj[a][b], c)
+	dp[a][b] = adj[a][b]
 
-dp = [[float('inf') for _ in range(n + 1)] for _ in range(n + 1)]
-path = [[[] for _ in range(n + 1)] for _ in range(n + 1)]
-
-for start in range(1, n + 1) : 
-	dp[start][start] = 0
-	for end in range(1, n + 1) :
-		if start == end : 
-			continue
-			
-		solve(start, end)
-
-		path[start][end] = [end]
-		trace(start, end)
+solve()
 
 printDP()
-printTr()
-	
+
+trace()
+
 file.close()
