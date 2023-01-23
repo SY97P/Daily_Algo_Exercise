@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./백준/dp/lv3/외판원순회.py"
+run = "python3 ./백준/이분탐색/랜선자르기.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
