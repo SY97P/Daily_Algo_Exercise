@@ -24,7 +24,7 @@ if dp[0] >= s :
 while True : 
 	sumof = dp[j] - dp[i] + a[i]
 
-	print(j, i, dp[j], dp[i], sumof, count)
+	# print(j, i, dp[j], dp[i], sumof, count)
 
 	if sumof < s : 
 		j += 1
