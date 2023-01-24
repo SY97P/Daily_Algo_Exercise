@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./백준/투포인터/냅색문제.py"
+run = "python3 ./백준/최단경로/최단경로.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
