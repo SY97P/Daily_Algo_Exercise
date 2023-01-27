@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./백준/최단경로/미확인도착지.py"
+run = "python3 ./백준/최단경로/타임머신.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
