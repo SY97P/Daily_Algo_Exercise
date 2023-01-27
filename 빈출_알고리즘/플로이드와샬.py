@@ -13,6 +13,24 @@ import sys
 
 input = sys.stdin.readline
 
+# * 플로이드 와샬 알고리즘
+# 	1. 모든 출발점 -> 모든 도착점 최소 비용 구하기
+# 	2. 분할정복 d[i][j] = min(d[i][j], d[i][k] + d[k][j]) k는 경유지
+# 	3. 연산 전에 인접행렬을 dp에 초기화해줘야 함. -> 그래야 분할 정복이 가능
+# 	4. 반복문 세 개로 해결 (경유지, 출발지, 도착지) -> O(n^3) ; DFS, BFS 아님!!
+
+# 	- 다익스트라 알고리즘으로 해결하려고 하면 오답이 나옴
+# 		- 모든 출발점 고려 시에는 최적해 보장이 안 되는 모양임.
+# 		- 아마 경유지 고려를 안 하기 때문이 아닐까
+
+# 	- 역추적하는 방법
+# 		1. 경유지 선택 시 해당 경유지를 기록하는 dp와 동일 차원 배열 생성
+# 		2. DFS를 이용해 divide and merge 해서 경로를 생성
+# 		3. path = [start] + tracking(start, end) + [end]
+# 			tracking(start, end) = return tracking(s, w) + [w] + tracking(w, e)
+# 		4. track[i][j] 이 초기값이라면 경유지가 없다는 의미 -> 빈 리스트 반환
+# 		5. 이동하는 경로가 존재하지 않음에도 track만 본다면 경로가 있음으로 판단하므로, dp[i][j] 가 초기값이 아닌지도 함께 확인
+
 def printDP() : 
 	for i in range(1, n + 1) : 
 		for d in dp[i][1:] :
