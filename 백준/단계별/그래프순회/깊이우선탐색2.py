@@ -39,7 +39,7 @@ for _ in range(m) :
     adj[v].append(u)
 
 for i in range(1, n+1) :
-    adj[i].sort()
+    adj[i].sort(reverse=True)
 
 count = 0
 dp = [0 for _ in range(n+1)]
