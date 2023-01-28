@@ -1,4 +1,4 @@
-file = open("./백준_그리디/공항tc.txt", "r")
+file = open("./그리디/공항tc.txt", "r")
 
 def union(curr_index, prev_index) : 
 	print(curr_index, prev_index)

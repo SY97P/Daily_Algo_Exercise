@@ -58,7 +58,7 @@ print(answer)
 		
 
 def main() : 
-	# file = open("./백준_그리디/회의실배정.txt", 'r')
+	# file = open("./그리디/회의실배정.txt", 'r')
 	# n = int(file.readline())
 	# arr = []
 	# for i in range(n) : 

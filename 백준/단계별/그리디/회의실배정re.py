@@ -1,4 +1,4 @@
-file = open("./백준_그리디/회의실배정retc.txt", "r")
+file = open("./그리디/회의실배정retc.txt", "r")
 
 for tc in range(2) : 
 	n = int(file.readline())
