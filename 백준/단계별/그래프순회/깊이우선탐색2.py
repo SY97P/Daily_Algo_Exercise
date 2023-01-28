@@ -1,13 +1,13 @@
 # 1
 # 0
 # 0
+# 3
 # 2
 # 4
-# 3
 # 1
-# 2
-# 3
 # 4
+# 3
+# 2
 # 0
 
 file = open("C:/Users/onetu/PycharmProjects/Daily_Exercise_with_Programmers/백준/단계별/그래프순회/깊이우선탐색1.txt", "r")
