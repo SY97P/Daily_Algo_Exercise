@@ -7,10 +7,6 @@ file = open(os.getcwd()+"\\"+filename)
 
 input = file.readline
 
-import sys
-
-sys.setrecursionlimit(10**6)
-
 def solve(inor_start, inor_end, post_start, post_end) :
     if inor_start > inor_end or post_start > post_end :
         return
@@ -25,6 +21,7 @@ def solve(inor_start, inor_end, post_start, post_end) :
 
     solve(inor_start, inor_start+left-1, post_start, post_start+left-1)
     solve(inor_end-right+1, inor_end, post_end-right, post_end-1)
+
 
 n = int(input())
 inor = list(map(int, input().split()))
