@@ -1,4 +1,5 @@
 # YES
+# YES
 
 import os
 filename = "여행가자.txt"
