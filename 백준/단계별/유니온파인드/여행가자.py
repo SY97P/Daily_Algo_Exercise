@@ -7,11 +7,11 @@ file = open(os.getcwd()+"\\"+filename)
 
 input = file.readline
 
-import sys
-
-input = sys.stdin.readline
-
-sys.setrecursionlimit(10**6)
+# import sys
+#
+# input = sys.stdin.readline
+#
+# sys.setrecursionlimit(10**6)
 
 def find(num) :
     if parent[num] == num :
