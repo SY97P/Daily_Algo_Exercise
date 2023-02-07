@@ -14,6 +14,7 @@ input = file.readline
 
 import heapq, sys
 
+#
 # input = sys.stdin.readline
 
 def prim(init) :
