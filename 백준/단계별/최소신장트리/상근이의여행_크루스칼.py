@@ -15,7 +15,7 @@ input = file.readline
 
 import heapq, sys
 
-input = sys.stdin.readline
+# input = sys.stdin.readline
 
 def find(num):
     if parent[num] == num:
