@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * 3. 모든 정점이 MST에 포함될 때까지 반복
  */
 
-public class 최소스패닝트리_prim {
+public class 최소스패닝트리_프림 {
 //public class Main {
 
     static int v;
