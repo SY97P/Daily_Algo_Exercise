@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
  * * 사이클 발생 확인
  * - 유니온-파인드
  */
-public class 크루스칼 {
+public class 최소스패닝트리_크루스칼 {
 
     static int v;
     static int e;
