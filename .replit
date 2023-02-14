@@ -1,5 +1,5 @@
 language = "python3"
-run = "python3 ./백준/단계별/유니온파인드/집합의표현.py"
+run = "python3 ./백준/단계별/트리dp/트리와쿼리.py"
 
 [env]
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
