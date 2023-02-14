@@ -2,14 +2,13 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.StringTokenizer;
 import java.util.PriorityQueue;
 import java.io.InputStreamReader;
 
 public class 다리만들기2 {
 
-    static boolean log = true;
+    static boolean log = false;
     static int[][] d = new int[][]{{0,1}, {0,-1}, {1,0}, {-1, 0}};
 
     static int n, m;
@@ -19,21 +18,22 @@ public class 다리만들기2 {
     static PriorityQueue<Pair> q;
     static boolean[] mst;
 
-    static class Pair implements Comparator<Pair> {
-        static int cost, node;
+    static class Pair implements Comparable<Pair> {
+        int cost;
+        int node;
 
         Pair(int cost_num, int node_num) {
             this.cost = cost_num;
             this.node = node_num;
         }
 
-        @Override
-        public int compare(Pair o1, Pair o2) {
-            return Integer.compare(o1.cost, o2.cost);
-        }
-
         public void print() {
             System.out.println(this.cost + " " + this.node);
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            return Integer.compare(this.cost, o.cost);
         }
     }
 
@@ -44,51 +44,52 @@ public class 다리만들기2 {
             )
         );
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
+        for (int tc = 0; tc < 6; tc ++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
 
-        matrix = new int[n][m];
+            n = Integer.parseInt(st.nextToken());
+            m = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < n; i ++) {
-            st = new StringTokenizer(br.readLine());
-            for (int j = 0; j < m; j++) {
-                matrix[i][j] = Integer.parseInt(st.nextToken());
+            matrix = new int[n][m];
+
+            for (int i = 0; i < n; i++) {
+                st = new StringTokenizer(br.readLine());
+                for (int j = 0; j < m; j++) {
+                    matrix[i][j] = Integer.parseInt(st.nextToken());
+                }
             }
-        }
 
-        if (log) {
-            for (int[] mat : matrix) {
-                System.out.println(Arrays.toString(mat));
+            if (log) {
+                for (int[] mat : matrix) {
+                    System.out.println(Arrays.toString(mat));
+                }
             }
-        }
 
-        // 1. 각 섬에 고유번호 부여
-        numbering();
+            // 1. 각 섬에 고유번호 부여
+            numbering();
 
-        if (log) {
-            System.out.println();
-            for (int[] mat : matrix)
-                System.out.println(Arrays.toString(mat));
-            System.out.println("island : " + island);
-        }
-
-        // 2. 섬 사이 거리 구하기
-        distancing();
-
-        if (log) {
-            System.out.println();
-            for (int[] ad : adj) {
-                for (int j = 0; j < island; j++)
-                    System.out.print((ad[j] == Integer.MAX_VALUE ? 0 : ad[j]) + ", ");
+            if (log) {
                 System.out.println();
+                for (int[] mat : matrix)
+                    System.out.println(Arrays.toString(mat));
+                System.out.println("island : " + island);
             }
-        }
 
-        // 3. MST 구하기
-        // 4. 모든 섬을 연결할 수 있는지 확인
-        System.out.println(prim());
+            // 2. 섬 사이 거리 구하기
+            distancing();
+
+            if (log) {
+                System.out.println();
+                for (int[] ad : adj) {
+                    System.out.println(Arrays.toString(ad));
+                }
+            }
+
+            // 3. MST 구하기
+            // 4. 모든 섬을 연결할 수 있는지 확인
+            System.out.println(prim());
+        }
     }
 
     private static void numbering() {
@@ -175,11 +176,9 @@ public class 다리만들기2 {
                 mst[curr.node] = true;
                 result += curr.cost;
 
-                for (int next_node = 1; next_node < adj[curr.node].length; next_node++) {
-                    int next_cost = adj[curr.node][next_node];
-                    if (next_cost != Integer.MAX_VALUE) {
-                        System.out.println(next_cost + " " + next_node);
-                        q.add(new Pair(next_cost, next_node));
+                for (int next_node = 1; next_node < island; next_node++) {
+                    if (!mst[next_node]) {
+                        q.add(new Pair(adj[curr.node][next_node], next_node));
                     }
                 }
             }
