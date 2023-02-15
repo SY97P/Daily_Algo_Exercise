@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 public class 다리만들기2 {
 
     static boolean log = false;
-    static int[][] d = new int[][]{{0,1}, {0,-1}, {1,0}, {-1, 0}};
+    static int[][] d = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
     static int n, m;
     static int[][] matrix;
@@ -39,57 +39,56 @@ public class 다리만들기2 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(
-            new FileReader(
-                    "C:\\Users\\onetu\\IdeaProjects\\Daily_Algo_Exercise\\백준\\단계별\\최소신장트리\\다리만들기2.txt"
-            )
+                new FileReader(
+                        "C:\\Users\\onetu\\IdeaProjects\\Daily_Algo_Exercise\\백준\\단계별\\최소신장트리\\다리만들기2.txt"
+                )
         );
 //        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        for (int tc = 0; tc < 6; tc ++) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-            n = Integer.parseInt(st.nextToken());
-            m = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
-            matrix = new int[n][m];
+        matrix = new int[n][m];
 
-            for (int i = 0; i < n; i++) {
-                st = new StringTokenizer(br.readLine());
-                for (int j = 0; j < m; j++) {
-                    matrix[i][j] = Integer.parseInt(st.nextToken());
-                }
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < m; j++) {
+                matrix[i][j] = Integer.parseInt(st.nextToken());
             }
-
-            if (log) {
-                for (int[] mat : matrix) {
-                    System.out.println(Arrays.toString(mat));
-                }
-            }
-
-            // 1. 각 섬에 고유번호 부여
-            numbering();
-
-            if (log) {
-                System.out.println();
-                for (int[] mat : matrix)
-                    System.out.println(Arrays.toString(mat));
-                System.out.println("island : " + island);
-            }
-
-            // 2. 섬 사이 거리 구하기
-            distancing();
-
-            if (log) {
-                System.out.println();
-                for (int[] ad : adj) {
-                    System.out.println(Arrays.toString(ad));
-                }
-            }
-
-            // 3. MST 구하기
-            // 4. 모든 섬을 연결할 수 있는지 확인
-            System.out.println(prim());
         }
+
+        if (log) {
+            for (int[] mat : matrix) {
+                System.out.println(Arrays.toString(mat));
+            }
+        }
+
+        // 1. 각 섬에 고유번호 부여
+        numbering();
+
+        if (log) {
+            System.out.println();
+            for (int[] mat : matrix)
+                System.out.println(Arrays.toString(mat));
+            System.out.println("island : " + island);
+        }
+
+        // 2. 섬 사이 거리 구하기
+        distancing();
+
+        if (log) {
+            System.out.println();
+            for (int[] ad : adj) {
+                System.out.println(Arrays.toString(ad));
+            }
+        }
+
+        // 3. MST 구하기
+        // 4. 모든 섬을 연결할 수 있는지 확인
+        System.out.println(prim());
+
     }
 
     private static void numbering() {
@@ -128,7 +127,7 @@ public class 다리만들기2 {
         }
 
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j ++) {
+            for (int j = 0; j < m; j++) {
                 if (matrix[i][j] != 0) {
                     for (int dir = 0; dir < 4; dir++) {
                         dist(i, j, dir, matrix[i][j], 0);
@@ -146,8 +145,8 @@ public class 다리만들기2 {
 
         if ((0 <= di) && (di < n) && (0 <= dj) && (dj < m)) {
             if (matrix[di][dj] == 0)
-                dist(di, dj, dir, param_s, count+1);
-            else if (matrix[di][dj] == param_s-1)
+                dist(di, dj, dir, param_s, count + 1);
+            else if (matrix[di][dj] == param_s - 1)
                 return;
             else {
                 if (count < 2)
@@ -177,10 +176,18 @@ public class 다리만들기2 {
                 result += curr.cost;
 
                 for (int next_node = 1; next_node < island; next_node++) {
-                    if (!mst[next_node]) {
+                    if (!mst[next_node] && adj[curr.node][next_node] != Integer.MAX_VALUE) {
                         q.add(new Pair(adj[curr.node][next_node], next_node));
                     }
                 }
+            }
+        }
+
+        // 모든 정점 포함 여부 확인
+        for (int i = 1; i < island; i++) {
+            if (!mst[i]) {
+                result = -1;
+                break;
             }
         }
 
