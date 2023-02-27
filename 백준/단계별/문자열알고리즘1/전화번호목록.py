@@ -3,9 +3,12 @@
 # NO 
 # YES
 
-file = open("./백준/단계별/문자열알고리즘1/전화번호목록.txt", "r")
+import os
+filename = "전화번호목록.txt"
+file = open(os.getcwd()+"\\"+filename, "r")
 
-input = file.readline 
+input = file.readline
+
 
 # * Trie 자료구조
 # - 문자열 검색 최적화 알고리즘 (문자열 집합 판별 알고리즘)
@@ -20,10 +23,10 @@ input = file.readline
 # data : 현재 노드가 문자열의 마지막인지 기록 (문자열의 마지막일 경우 원본 문자열 전체가 기록됨)
 # children : 자식노드
 class Node:
-	def __init__(self, node, data=None):
-		self.node = node
-		self.data = data
-		self.children = dict()
+    def __init__(self, node, data=None):
+        self.node = node
+        self.data = data
+        self.children = dict()
 
 
 # Trie 클래스
@@ -35,65 +38,63 @@ class Node:
 # find 메소드 : 문자열이 트라이 구조에 있는지 여부 반환
 #   -> 모든 문자열을 비교했음에도 해당 노드의 data가 None일 경우 문자열의 끝까지 도달한 것이 아니므로, 찾는 문자열이 아닐 수 있음.
 class Trie:
-	def __init__(self):
-		self.head = Node(None)
+    def __init__(self):
+        self.head = Node(None)
 
-	def insert(self, digits):
-		curr_node = self.head
+    def insert(self, digits):
+        curr_node = self.head
 
-		for digit in digits:
-			if digit not in curr_node.children:
-				curr_node.children[digit] = Node(digit)
-			curr_node = curr_node.children[digit]
+        for digit in digits:
+            if digit not in curr_node.children:
+                curr_node.children[digit] = Node(digit)
+            curr_node = curr_node.children[digit]
 
-		curr_node.data = digits
+        curr_node.data = digits
 
-	#
-	def find(self, digits):
-		curr_node = self.head
+    #
+    def find(self, digits):
+        curr_node = self.head
 
-		for digit in digits:
-			if digit not in curr_node.children:
-				return False
-			else:
-				curr_node = curr_node.children[digit]
-				if curr_node.data != None and curr_node.data != digits:
-					return True
-		return False
+        for digit in digits:
+            if digit not in curr_node.children:
+                return False
+            else:
+                curr_node = curr_node.children[digit]
+                if curr_node.data != None and curr_node.data != digits:
+                    return True
+        return False
 
-	def print(self):
-		dfs(self.head, 0)
+    def print(self):
+        dfs(self.head, 0)
 
 
 def dfs(node, depth):
-	for child_key in node.children.keys():
-		next_node = node.children[child_key]
-		print("--"*depth, end="")
-		print(next_node.node, next_node.data)
-		dfs(next_node, depth+1)
-		
+    for child_key in node.children.keys():
+        next_node = node.children[child_key]
+        print("--" * depth, end="")
+        print(next_node.node, next_node.data)
+        dfs(next_node, depth + 1)
+
 
 t = int(input())
 
 for tc in range(t):
-	n = int(input())
-	trie = Trie()
-	consistancy = True
-	digits_list = []
-	for _ in range(n):
-		digits = input().strip()
-		digits_list.append(digits)
-		trie.insert(digits)
-	for digits in digits_list:
-		if trie.find(digits):
-			consistancy = False
-			break
-	
+    n = int(input())
+    trie = Trie()
+    consistancy = True
+    digits_list = []
+    for _ in range(n):
+        digits = input().strip()
+        digits_list.append(digits)
+        trie.insert(digits)
+    for digits in digits_list:
+        if trie.find(digits):
+            consistancy = False
+            break
 
-	if consistancy:
-		print("YES")
-	else:
-		print("NO")
-		
+    if consistancy:
+        print("YES")
+    else:
+        print("NO")
 
 file.close()
