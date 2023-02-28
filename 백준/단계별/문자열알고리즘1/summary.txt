@@ -38,6 +38,7 @@
         - Trie 자료구조 방식
             - n개 문자열 insert
             - m개 문자열 find
+            -> python3 : 시간초과 (list, dict 모두) / pypy3 : 통과 (sys 모듈 입출력 사용)
         - Map 방식
             - n개 문자열 map 추가
             - m개 문자열 map 검색
