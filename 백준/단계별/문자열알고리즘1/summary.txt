@@ -42,3 +42,12 @@
         - Map 방식
             - n개 문자열 map 추가
             - m개 문자열 map 검색
+
+    * 휴대폰 자판
+        - Trie 자료구조
+        1. 모든 단어 trie에 insert
+        2. 모든 단어 trie에서 find
+        2-1. find 시 현재 노드가 자식노드로 이동할 때 count 증가
+        2-2. find 시 현재 노드이 children이 하나일 경우 count 증가 x
+        2-3. find 시 현재 노드가 어떤 문자열의 끝인 경우 count 증가 (2-1 조건 중 하나라도 참인 경우에만 증가)
+            -> curr_node.data is not None or (curr_node.node is not None and len(curr_node.children) > 1)
