@@ -30,7 +30,7 @@ def pow(a, tt):
         return a % p
     result = pow(a, tt//2)**2 % p
     if tt%2 != 0:
-        result *= a % p
+        result /= a % p
     return result
 
 
