@@ -30,7 +30,7 @@ def pow(a, tt):
         return a % p
     result = pow(a, tt//2)**2 % p
     if tt%2 != 0:
-        result /= a % p
+        result *= a % p
     return result
 
 
@@ -38,6 +38,8 @@ n, k = map(int, input().split())
 
 numerator = factorial(n)
 denominator = pow(factorial(k) * factorial(n-k), p-2)
+
+print(numerator, denominator, numerator * denominator)
 
 print(numerator * denominator % p)
 
