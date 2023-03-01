@@ -13,7 +13,7 @@ def optimize(mat_b, m, k):
 
 
 def matrix_multiply(matrix_a, matrix_b, n, m, k):
-    result = [[0 for _ in range(n)] for _ in range(k)]
+    result = [[0 for _ in range(k)] for _ in range(n)]
     for i in range(n):
         for j in range(k):
             result[i][j] = multiply(matrix_a[i], matrix_b[j], m)
