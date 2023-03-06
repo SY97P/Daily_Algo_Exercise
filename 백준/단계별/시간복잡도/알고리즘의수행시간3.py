@@ -7,7 +7,7 @@ input = file.readline
 
 
 # 이렇게 풀어야 시간초과없이 pass 가능
-# -> n <= 5000000000
+# -> n <= 500000
 # n = int(input())
 # print(n**2)
 # print(2)
