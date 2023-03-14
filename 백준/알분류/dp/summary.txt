@@ -16,3 +16,13 @@
         - dp[k][n] = a + b + c (k-1 개) + L(1개) = n 임을 이용
         dp[k][n] = sum(dp[k-1][0] + ... + dp[k-1][n])
                  = dp[k][n-1] + dp[k-1][n]
+
+     * ACMcraft
+        - 1차원 DP
+        - 방향 그래프
+        - root -> W 까지의 경로를 W -> root로의 경로로 변경 (DFS)
+        - d[i] : w에서 i 건물 건설까지 걸린 최대 소요시간
+               = max(d[i로 들어오는 노드])
+        - 메모이제이션
+            1. time < dp[node] -> continue
+            2. if dp[require] < delay[require] + time -> dp[require] 갱신, 큐 추가
