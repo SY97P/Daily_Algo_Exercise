@@ -1,4 +1,4 @@
-file = open("./동전2.txt")
+file = open("동전2.txt")
 
 input = file.readline
 
