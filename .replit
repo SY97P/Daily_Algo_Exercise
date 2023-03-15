@@ -1,8 +1,8 @@
-language = "java11"
-run = "java ./빈출알고리즘/트라이자료구조.java"
+# language = "java11"
+# run = "java ./빈출알고리즘/트라이자료구조.java"
 
-# language = "python3"
-# run = "python3 ./백준/단계별/문자열알고리즘1/전화번호목록.py"
+language = "python3"
+run = "python3 ./백준/알분류/dp/내려가기.py"
 
 # [env]
 # VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
