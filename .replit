@@ -2,7 +2,7 @@
 # run = "java ./빈출알고리즘/트라이자료구조.java"
 
 language = "python3"
-run = "python3 ./백준/알분류/dp/내려가기.py"
+run = "python3 ./백준/알분류/dp/파이프옮기기1.py"
 
 # [env]
 # VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
