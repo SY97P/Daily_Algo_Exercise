@@ -88,4 +88,14 @@
         - d[1][i+3] = min(self, d[0][i] + k) -> 매우 큰 거는 한 번만 쓸 수 있음.
 
     * 징검다리 건너기(small)
-         - j * (1 + abs(a[i+j] - a[i])) <= k -> dp[i+j] = true
+        - j * (1 + abs(a[i+j] - a[i])) <= k -> dp[i+j] = true
+
+    * 퇴사2
+        - d[i] : 오늘이 i번째 날일때 얻은 최대 수익
+        - d[i+t[i]] = min(self, d[i] + p[i])
+
+    * 호텔
+         - d[i][j] : i번째 도시까지 고려했을때 j명 만큼 홍보하면 필요한 최소비용
+         1. 초기화 : d[i][j] = ((j-1) // man + 1) * cost)
+         2. dp값 갱신 : d[i][j] = min(self, dp[i-1][j-man])
+         3. dp값 최적화 : d[i][j] = d[i][j-man] = min(d[i][j], d[i][j-man])
