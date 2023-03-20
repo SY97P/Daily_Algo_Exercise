@@ -77,4 +77,12 @@
         - d[i][j] = d[i-1][j] + d[i][j-1] - d[i-1][j-1] + matrix[i][j]
         - return d[x2][y2] - d[x2][y1-1] - d[x1-1][y2] + d[x1-1][y1-1]
 
-
+    * 징검다리 건너기
+        - 2차원 DP
+        - d[0][i] : 매우 큰 거 안 썼을때 필요 에너지
+        - d[1][i] : 매우 큰 거 썼을때 필요 에너지
+        - d[0][i+1] = min(self, d[0][i] + small)
+        - d[1][i+1] = min(self, d[0][i] + small, d[1][i] + small)
+        - d[0][i+2] = min(self, d[0][i] + big)
+        - d[1][i+2] = min(self, d[0][i] + big, d[1][i] + big)
+        - d[1][i+3] = min(self, d[0][i] + k) -> 매우 큰 거는 한 번만 쓸 수 있음.
