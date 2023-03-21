@@ -1,0 +1,23 @@
+AABB
+ABBA
+
+AAABB
+ABABA
+
+ABACABA
+AABCBAA
+
+ABCD
+I'm Sorry Hansoo
+
+BBAA
+ABBA
+
+ABA
+ABA
+
+AABC
+I'm S
+
+DDDDDA
+I'm S
