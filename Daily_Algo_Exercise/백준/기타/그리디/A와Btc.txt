@@ -1,0 +1,7 @@
+B
+ABBA
+1
+
+AB
+ABB
+0
