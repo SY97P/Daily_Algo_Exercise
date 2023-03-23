@@ -20,7 +20,7 @@ import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.Arrays;
 
-class Solution
+public class 행렬찾기
 {
 	static int n;
 
