@@ -13,7 +13,7 @@ public class 강의실배정 {
     static Schedule[] schedules;
     static PriorityQueue<Long> room;
 
-    static class Schedule implements Comparable<Schedule> {
+    private static class Schedule implements Comparable<Schedule> {
         long start;
         long end;
         Schedule(long s, long e) {
