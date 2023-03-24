@@ -13,7 +13,7 @@ public class 회의실배정 {
     static int n;
     static Schedule[] schedules;
 
-    static class Schedule implements Comparable<Schedule> {
+    static private class Schedule implements Comparable<Schedule> {
         int start;
         int end;
 
