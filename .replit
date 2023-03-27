@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/백준/문제집/그리디/파일합치기3.py"
+run = "python3 ./Daily_Algo_Exercise/백준/문제집/그리디/카드정렬하기.py"
