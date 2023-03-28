@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/백준/문제집/투포인터/겹치는건싫어.py"
+run = "python3 ./Daily_Algo_Exercise/백준/문제집/투포인터/두용액.py"
