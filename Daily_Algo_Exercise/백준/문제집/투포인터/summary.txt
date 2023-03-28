@@ -32,3 +32,10 @@
 		- count[a[i]] -= 1, count[a[j]] += 1
 		- count[c] == 0 -> 1
 		- count[x] != 0 인 개수세기 -> result 갱신
+
+	* 부분합
+		- 누적합 asum[n+1]
+		- i, j = 0, 1
+		- sum[j] - sum[i] < s -> j 증가
+		- sum[j] - sum[i] > s -> i 증가
+		- sum[j] = sum[i] = s -> result 갱신
