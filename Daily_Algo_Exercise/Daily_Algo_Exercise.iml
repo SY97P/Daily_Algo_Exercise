@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/백준/문제집/동적1" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/빈출알고리즘" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/백준/문제집/그리디" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/백준/문제집/투포인터" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
