@@ -14,3 +14,9 @@
 		- curr 다음 문자열인 인덱스에서 duck 값이 0이면 duck[i] = count, count += 1
 		- word 끝까지 도달했을때 count % 5 == 0이면 result 증가, 아니면 -1 리턴
 		- 86%에서 시간초과 -> quackau 같이 q로 시작하지 않으면서 count가 5배수로 무한반복 가능
+
+	* 파일 정리
+		- 트라이 자료구조 -> 시간초과
+		- defaultdict -> 통과
+
+	* 
