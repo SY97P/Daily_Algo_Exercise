@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/백준/문제집/구현/달팽이.py"
+run = "python3 ./Daily_Algo_Exercise/백준/문제집/구현/오리.py"
