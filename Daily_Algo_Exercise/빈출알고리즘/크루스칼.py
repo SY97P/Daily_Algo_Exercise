@@ -18,13 +18,12 @@ def find_parent(parent, x) :
 # 두 노드가 서로소. 
 # 즉, 연결해도(부모노드를 같게 해도) cycle이 생기지 않음이 보장되었으므로
 # 두 트리를 합치는 것.
-def union_parent(parent, a, b) : 
-	a = find_parent(parent, a)
-	b = find_parent(parent, b)
-	if a < b : 
-		parent[b] = a
-	else : 
-		parent[a] = b
+def union_parent(parent, num, set_num) : 
+	if parent[num] == num:
+		parent[num] = set_num
+		return
+	union_parent(parent, parent[num], set_num)
+	
 
 # 노드 수, 간선 수
 v, e = map(int, input().split())
@@ -48,8 +47,13 @@ for i in range(e) :
 	# 두 노드의 부모가 같지 않아야 합칠 수 있음
 	# 다시 말해 두 노드가 분리되어있어야 합칠 수 있음. 
 	# cycle 방지.
-	if find_parent(a) != find_parent(b) :
-		union_parent(parent, a, b)
-		total_cost += cost
+	fa, fb = find_parent(a), find_parent(b)
+	if fa < fb:
+		union(b, fa)
+	elif fa > fb:
+		union(a, fb)
+	else:
+		continue
+	total_cost += cost
 
 print(total_cost)
