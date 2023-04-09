@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/이코테/이론/dbfs/음료수얼려먹기.py"
+run = "python3 ./Daily_Algo_Exercise/이코테/이론/dbfs/미로탈출.py"
