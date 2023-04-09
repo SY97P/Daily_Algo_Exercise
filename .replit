@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/이코테/이론/정렬/두배열의원소교체.py"
+run = "python3 ./Daily_Algo_Exercise/빈출알고리즘/계수정렬.py"
