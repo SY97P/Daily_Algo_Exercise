@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/빈출알고리즘/그래프이론/위상정렬.py"
+run = "python3 ./Daily_Algo_Exercise/이코테/이론/그래프이론/커리큘럼.py"
