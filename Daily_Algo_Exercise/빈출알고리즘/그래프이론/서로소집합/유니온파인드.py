@@ -4,7 +4,7 @@ parent = [i for i in range(n+1)]
 
 def find(parent, num):
 	if parent[num] != num:
-		parent[num] = num
+		parent[num] = find(parent, num)
 	return parent[num]
 
 def union(parent, a, b):
