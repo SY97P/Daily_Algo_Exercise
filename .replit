@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/이코테/기출/정렬/카드정렬하기.py"
+run = "python3 ./Daily_Algo_Exercise/이코테/기출/이진탐색/정렬된배열에서특정수의개수구하기.py"
