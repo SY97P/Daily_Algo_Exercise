@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/이코테/기출/정렬/안테나.py"
+run = "python3 ./Daily_Algo_Exercise/이코테/기출/정렬/카드정렬하기.py"
