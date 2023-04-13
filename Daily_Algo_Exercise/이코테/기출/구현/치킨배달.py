@@ -6,28 +6,25 @@ from itertools import combinations
 
 n, m = map(int, input().split())
 
-chicken = []
 house = []
+chicken = []
 
 for i in range(n):
 	line = list(map(int, input().split()))
-	for j, l in enumerate(line):
-		if l == 1:
+	for j in range(n):
+		if line[j] == 1:
 			house.append((i, j))
-		elif l == 2:
+		elif line[j] == 2:
 			chicken.append((i, j))
 
-cases = list(combinations([i for i in range(len(chicken))], m))
-
 answer = 1e9
-
-for case in cases:
-	survives = [chicken[x] for x in case]
+for case in combinations([i for i in range(len(chicken))], m):
 	chicken_dist = 0
-	for hi, hj in house:
+	for home in house:
 		dist = 1e9
-		for ci, cj in survives:
-			dist = min(dist, abs(hi-ci) + abs(hj-cj))
+		for x in case:
+			chicken_house = chicken[x]
+			dist = min(dist, abs(home[0]-chicken[x][0]) + abs(home[1]-chicken[x][1]))
 		chicken_dist += dist
 	answer = min(answer, chicken_dist)
 
