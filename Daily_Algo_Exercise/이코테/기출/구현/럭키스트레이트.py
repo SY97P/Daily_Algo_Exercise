@@ -1,9 +1,6 @@
-number = input().strip()
+number = list(map(int, input().strip()))
 
-left = list(map(int, number[:len(number)//2]))
-right = list(map(int, number[len(number)//2:]))
-
-if sum(left) == sum(right):
+if sum(number[:len(number)//2]) == sum(number[len(number)//2:]):
 	print("LUCKY")
 else:
 	print("READY")
