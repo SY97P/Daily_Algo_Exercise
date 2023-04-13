@@ -1,15 +1,14 @@
-n = 5
-array = [2, 3, 1, 2, 2]
-
+n = int(input())
+array = list(map(int, input().split()))
 array.sort()
 
-answer = 0
-count = 0
-
+answer = 0 
+count = 1
 for a in array:
-	count += 1
-	if count >= a:
+	if a == count:
 		answer += 1
-		count = 0
+		count = 1
+	elif count < a:
+		count += 1
 
 print(answer)
