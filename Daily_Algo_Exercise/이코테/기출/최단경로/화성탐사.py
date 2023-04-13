@@ -19,6 +19,9 @@ for tc in range(t):
 		while q:
 			cost, i, j = heapq.heappop(q)
 
+			if cost > dp[i][j]:
+				continue
+
 			for dx, dy in d:
 				di = i + dx
 				dj = j + dy 
