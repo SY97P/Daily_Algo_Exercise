@@ -1,5 +1,6 @@
 { pkgs }: {
   deps = [
+    pkgs.imagemagick6_light
     pkgs.zulu
     pkgs.run
     pkgs.python38Full
