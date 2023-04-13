@@ -1,10 +1,11 @@
 n = int(input())
-array = list(map(int, input().split()))
-array.sort()
+coins = list(map(int, input().split()))
+coins.sort()
 
-target = 1
-for x in array:
-	if target < x:
-		break
-	target += x
-print(target)
+won = 1
+for i in range(n):
+	if coins[i] <= won:
+		won += coins[i]
+	else:
+		break 
+print(won)
