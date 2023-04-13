@@ -1,16 +1,15 @@
-line = input().strip()
+word = input().strip()
 
-word = []
 num = 0
-
-for l in line:
-	if l.isdigit():
-		num += int(l)
+s = []
+for w in word:
+	if w.isdigit():
+		num += int(w)
 	else:
-		word.append(l)
+		s.append(w)
 
-word.sort()
-
-answer = ''.join(word) + str(num)
-
-print(answer)
+s.sort()
+result = ''.join(s)
+if num != 0:
+	result += str(num)
+print(result)

@@ -4,59 +4,57 @@ input = file.readline
 
 from collections import deque
 
+
 n = int(input())
-matrix = [[0 for _ in range(n+1)] for _ in range(n+1)]
-matrix[1][1] = -1
+matrix = [[0] * n for _ in range(n)]
 
 k = int(input())
 for _ in range(k):
-	x, y = map(int, input().split())
-	matrix[x][y] = 1
+	a, b = map(int, input().split())
+	matrix[a-1][b-1] = 1
 
 l = int(input())
-command = deque([])
-for _ in range(l):
-	t, c = input().strip().split()
-	command.append((int(t), c))
+event = [input().split() for _ in range(l)]
 
-d = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+d = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+dir = 0
+idx = 0
 
-def simulation():
-	time = 0
-	q = deque([(1, 1)])
-	dir = 1
-	hi, hj = 1, 1
-	while True:
-		if command and time == command[0][0]:
-			_, c = command.popleft()
-			if c == "D":
-				dir += 1
-				if dir > 3: dir = 0
-			else:
-				dir -= 1
-				if dir < 0: dir = 3
-		hi += d[dir][0]
-		hj += d[dir][1]
+q = deque([(0, 0)])
 
-		# 타당한 위치인지 확인
-		if hi <= 0 or hi > n or hj <= 0 or hj > n or matrix[hi][hj] == -1:
-			time += 1
-			break
+timer = 0
+while True:
+	i, j = q[0]
+	# 가고
+	di, dj = i + d[dir][0], j + d[dir][1]
+	
+	# 벽인지 확인
+	if di < 0 or di >= n or dj < 0 or dj >= n:
+		timer += 1
+		break
 
-		# 이제 사과위치인지에 따라 꼬리를 옮길지 아닐지
-		if matrix[hi][hj] != 1:
-			ti, tj = q.pop()
-			matrix[ti][tj] = 0
-		matrix[hi][hj] = -1
-		q.appendleft((hi, hj))
-		
-		time += 1
+	# 내 몸통인지 확인
+	if (di, dj) in q:
+		timer += 1
+		break
 
-	return time
+	# 사과 아니면 꼬리 자르고
+	# 사과면 꼬리 자르지 말고
+	if matrix[di][dj] != 1:
+		q.pop()
+	matrix[di][dj] = 0
+	q.appendleft((di, dj))
 
+	timer += 1
 
-answer = simulation()
-print(answer)
+	# 방향바꾸고
+	if idx < l and int(event[idx][0]) == timer:
+		if event[idx][1] == "D":
+			dir = dir + 1 if dir < 3 else 0
+		else:
+			dir = dir - 1 if dir > 0 else 3
+		idx += 1
 
+print(timer)
 
 file.close()
