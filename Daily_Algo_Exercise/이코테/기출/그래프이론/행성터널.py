@@ -2,10 +2,6 @@ file = open("./Daily_Algo_Exercise/이코테/기출/그래프이론/행성터널
 
 input = file.readline 
 
-import time
-
-start_time = time.time()
-
 n = int(input())
 x, y, z = [], [], []
 for i in range(n):
@@ -23,10 +19,6 @@ for i in range(n-1):
 	edges.append((y[i+1][0] - y[i][0], y[i+1][1], y[i][1]))
 	edges.append((z[i+1][0] - z[i][0], z[i+1][1], z[i][1]))
 edges.sort()
-
-end_time = time.time()
-
-print("lap : ", end_time - start_time)
 
 parent = [i for i in range(n)]
 
@@ -50,9 +42,5 @@ for c, a, b in edges:
 		answer += c
 
 print(answer)
-
-end_time = time.time()
-
-print("time : ", end_time - start_time)
 
 file.close()
