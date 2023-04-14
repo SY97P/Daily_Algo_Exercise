@@ -5,28 +5,26 @@ input = file.readline
 t = int(input())
 for tc in range(t):
 	n, m = map(int, input().split())
-	matrix = [[0] * m for _ in range(n)]
 	line = list(map(int, input().split()))
+	matrix = [[0] * m for _ in range(n)]
+	dp = [[0] * m for _ in range(n)]
 	for i in range(len(line)):
 		matrix[i//m][i%m] = line[i]
 
-	dp = [[0] * m for _ in range(n)]
 	for i in range(n):
 		dp[i][0] = matrix[i][0]
 
-	d = [(-1, 1), (0, 1), (1, 1)]
-
-	for j in range(m-1):
+	for j in range(1, m):
 		for i in range(n):
-			for dx, dy in d:
-				di = i + dx
-				dj = j + dy
-				if 0 <= di < n and dp[di][dj] < dp[i][j] + matrix[di][dj]:
-					dp[di][dj] = dp[i][j] + matrix[di][dj]
+			for k in range(-1, 2):
+				if 0 <= i+k < n:
+					dp[i][j] = max(dp[i][j], dp[i+k][j-1] + matrix[i][j])
 
 	answer = 0
 	for i in range(n):
 		answer = max(answer, dp[i][-1])
+
 	print(answer)
-	
+
+
 file.close()
