@@ -1,13 +1,13 @@
 import heapq
 
 n = int(input())
-cards = [int(input()) for _ in range(n)]
-heapq.heapify(cards)
+q = [int(input()) for _ in range(n)]
+heapq.heapify(q)
 
 answer = 0
-while len(cards) > 1:
-	a, b = heapq.heappop(cards), heapq.heappop(cards)
+while len(q) > 1:
+	a, b = heapq.heappop(q), heapq.heappop(q)
 	answer += a + b
-	heapq.heappush(cards, a + b)
+	heapq.heappush(q, a+b)
 
 print(answer)
