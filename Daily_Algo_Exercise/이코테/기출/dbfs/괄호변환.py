@@ -1,17 +1,6 @@
-def check(word):
-	count = 0
-	for w in word:
-		if w == "(":
-			count += 1
-		else:
-			if count == 0:
-				return False
-			count -= 1
-	return True
-
 def split_word(word):
-	count = 0
 	idx = 0
+	count = 0
 	for i, w in enumerate(word):
 		if w == "(":
 			count += 1
@@ -22,27 +11,42 @@ def split_word(word):
 			break
 	return word[:idx+1], word[idx+1:]
 
-def concat(word):
+
+def correct_word(word):
+	count = 0
+	for w in word:
+		if w == "(":
+			count += 1
+		else:
+			count -= 1
+		if count < 0:
+			return False
+	return True
+
+
+def convert_word(word):
 	result = ""
 	for i in range(1, len(word)-1):
-		if word[i] == "(":
-			result += ")"
-		else:
-			result += "("
+		result += ")" if word[i] == "(" else "("
 	return result
 
-def solution(line):
-	if len(line) == 0:
-		return ""
-	u, v = split_word(line)
 
-	answer = ""
+def solution(word):
+	if len(word) == 0:
+		return word 
 
-	if check(u):
-		answer = u + solution(v)
+	u, v = split_word(word)
+
+	if correct_word(u):
+		return u + solution(v)
 	else:
-		answer = "(" + solution(v) + ")" + concat(u)
-	return answer
+		return "(" + solution(v) + ")" + convert_word(u)
 
-line = input().strip()
-print(solution(line))
+
+def main():
+	word = "(()())()"
+	word = ")("
+	word = "()))((()"
+	print(solution(word))
+
+main()

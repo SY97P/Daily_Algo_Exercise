@@ -1,1 +1,1 @@
-run = "python3 ./Daily_Algo_Exercise/이코테/기출/dbfs/경쟁적전염.py"
+run = "python3 ./Daily_Algo_Exercise/이코테/기출/dbfs/괄호변환.py"
