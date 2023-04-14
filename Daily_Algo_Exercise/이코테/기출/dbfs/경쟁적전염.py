@@ -2,39 +2,44 @@ file = open("./Daily_Algo_Exercise/이코테/기출/dbfs/경쟁적전염.txt")
 
 input = file.readline 
 
+
 from collections import deque
+
 
 n, k = map(int, input().split())
 matrix = [list(map(int, input().split())) for _ in range(n)]
 s, x, y = map(int, input().split())
 
-def bfs():
-	d = [(0, 1), (0, -1), (1, 0), (-1, 0)]
-	q = deque([])
+virus = []
+for i in range(n):
+	for j in range(n):
+		if matrix[i][j] != 0:
+			virus.append((matrix[i][j], i, j))
+virus.sort()
 
-	for l in range(1, k+1):
-		for i in range(n):
-			for j in range(n):
-				if matrix[i][j] == l:
-					q.append((i, j, l, 0))
+q = deque()
+for v, i, j in virus:
+	q.append((0, i, j))
 
-	while q:
-		i, j, vir, sec = q.popleft()
-		if sec >= s:
-			break
+d = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
-		for dx, dy in d:
-			di = i + dx
-			dj = j + dy
-			if 0 <= di < n and 0 <= dj < n and matrix[di][dj] == 0:
-				matrix[di][dj] = vir
-				q.append((di, dj, vir, sec+1))
+while q: 
+	c, i, j = q.popleft()
 
-	return matrix[x-1][y-1]
-	
+	if c >= s:
+		break
 
-answer = bfs()
-print(answer)
+	for dx, dy in d:
+		di = i + dx
+		dj = j + dy 
+		if 0 <= di < n and 0 <= dj < n and matrix[di][dj] == 0:
+			matrix[di][dj] = matrix[i][j]
+			q.append((c + 1, di, dj))
+
+# for mat in matrix:
+# 	print(mat)
+
+print(matrix[x-1][y-1])
 
 
 file.close()
