@@ -9,9 +9,8 @@ while l <= r:
 	if m == array[m]:
 		answer = m
 		break
-	elif m < array[m]:
-		r = m - 1
-	else:
+	elif m > array[m]:
 		l = m + 1
-
+	else:
+		r = m - 1
 print(answer)
