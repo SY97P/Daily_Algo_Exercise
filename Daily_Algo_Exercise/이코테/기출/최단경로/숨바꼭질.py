@@ -7,29 +7,24 @@ for _ in range(m):
 	adj[a].append(b)
 	adj[b].append(a)
 
-dp = [int(1e9) for _ in range(n+1)]
+dp = [1e9] * (n+1)
 dp[1] = 0
 
-q = []
-heapq.heappush(q, (0, 1))
+q = [(dp[1], 1)]
+heapq.heapify(q)
 
-while q:
+while q: 
 	cost, node = heapq.heappop(q)
 
-	if cost > dp[node]:
-		continue
-
 	for next_node in adj[node]:
-		if dp[node] + 1 < dp[next_node]:
-			dp[next_node] = dp[node] + 1
+		if cost + 1 < dp[next_node]:
+			dp[next_node] = cost + 1
 			heapq.heappush(q, (dp[next_node], next_node))
 
-answer_idx, answer_dist = 0, 0
+max_dist = 0
+max_idx = 0
 for i in range(1, n+1):
-	if answer_dist <= dp[i]:
-		if answer_dist < dp[i]:
-			answer_idx = i
-		answer_dist = dp[i]
-print(answer_idx, answer_dist, dp.count(answer_dist))
-		
-		
+	if dp[i] > max_dist:
+		max_dist = dp[i]
+		max_idx = i
+print(max_idx, max_dist, dp.count(max_dist))
