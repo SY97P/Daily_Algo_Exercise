@@ -18,12 +18,11 @@ def union(parent, a, b):
 
 answer = 0
 for _ in range(p):
-	data = find(parent, int(input()))
-	if data == 0:
+	num = int(input())
+	if find(parent, num) == 0:
 		break
-	union(parent, data, data-1)
+	else:
+		union(parent, num, num-1)
 	answer += 1
-
-print(parent)
 
 print(answer)
