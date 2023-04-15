@@ -1,8 +1,10 @@
-n, m = map(int, input().split())
-matrix = [list(map(int, input().split())) for _ in range(n)]
-plan = list(map(int, input().split()))
+file = open("./Daily_Algo_Exercise/이코테/기출/그래프이론/여행계획.txt")
 
-parent = [i for i in range(n)]
+input = file.readline
+
+n, m = map(int, input().split())
+
+parent = [i for i in range(n+1)]
 
 def find(parent, num):
 	if parent[num] != num:
@@ -17,18 +19,19 @@ def union(parent, a, b):
 	elif fa > fb:
 		parent[fa] = fb
 
-for a in range(n):
-	for b in range(n):
-		if matrix[a][b] == 1:
-			if find(parent, a) != find(parent, b):
-				union(parent, a, b)
+for i in range(n):
+	line = list(map(int, input().split()))
+	for j in range(n):
+		if line[j] == 1:
+			union(parent, i+1, j+1)
 
-answer = True 
+path = list(map(int, input().split()))
+answer = True
 for i in range(m-1):
-	if find(parent, plan[i]-1) != find(parent, plan[i+1]-1):
+	if find(parent, path[i]) != find(parent, path[i+1]):
 		answer = False
 		break
-		
 print("YES" if answer else "NO")
 
-	
+
+file.close()
