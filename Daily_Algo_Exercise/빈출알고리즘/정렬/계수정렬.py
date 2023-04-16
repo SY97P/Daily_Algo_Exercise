@@ -5,6 +5,8 @@ array = [7, 5, 9, 0, 3, 1, 6, 2, 4, 8]
 # - 데이터가 정수인 경우에만 사용가능(실수 안 됨)
 # - 따로 k+1 크기의 리스트를 만들어서 각 정수값의 빈도수를 기록
 
+# * 대안책으로 기수정렬(radix sort)가 있음
+
 count = [0 for i in range(max(array)+1)]
 
 for a in array:
