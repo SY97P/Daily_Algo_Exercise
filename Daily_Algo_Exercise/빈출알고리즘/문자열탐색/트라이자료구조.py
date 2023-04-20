@@ -1,4 +1,4 @@
-file = open("./백준/단계별/문자열알고리즘1/전화번호목록.txt", "r")
+file = open("./Daily_Algo_Exercise/백준/단계별/문자열알고리즘1/전화번호목록.txt", "r")
 
 input = file.readline 
 
