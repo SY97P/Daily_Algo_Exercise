@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,c++,python,pycharm+all,intellij+all,visualstudiocode,replit
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,c++,python,pycharm+all,intellij+all,visualstudiocode,replit
 
+### mac ###
+.DS_Store
+
 ### C++ ###
 # Prerequisites
 *.d
@@ -382,6 +385,7 @@ pyrightconfig.json
 replit.nix
 
 ### VisualStudioCode ###
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
