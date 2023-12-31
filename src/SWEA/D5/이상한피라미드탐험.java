@@ -1,3 +1,5 @@
+package SWEA.D5;
+
 /*
 
 #1 1
@@ -10,7 +12,7 @@ import java.util.Scanner;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 
-class Solution
+class 이상한피라미드탐험
 {
 	static ArrayList<ArrayList<Integer>> room;
 

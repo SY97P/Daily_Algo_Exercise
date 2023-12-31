@@ -1,4 +1,4 @@
-/*
+package SWEA.D3;/*
 
 #1 471034 815406 542284 170257 228297 740370 785047 677617 834173 648732 
 #2 364373 466241 450661 237978 437060 679163 812457 727955 262600 218437 
@@ -18,7 +18,7 @@ import java.util.Scanner;
 import java.util.LinkedList;
 import java.util.List;
 
-class Solution
+class 암호문3
 {
 	static int n;
 	static int m;

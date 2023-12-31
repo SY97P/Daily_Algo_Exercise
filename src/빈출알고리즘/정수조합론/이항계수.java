@@ -1,3 +1,5 @@
+package 빈출알고리즘.정수조합론;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,3 +1,5 @@
+package 빈출알고리즘.LIS;
+
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;

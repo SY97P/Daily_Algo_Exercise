@@ -1,3 +1,5 @@
+package 빈출알고리즘.문자열탐색;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
