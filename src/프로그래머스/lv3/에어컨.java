@@ -48,49 +48,49 @@ package 프로그래머스.lv3;
 2. 미탑승 -> 모든 온도 가능해야함.
 */
 
-class Solution {
-
-    public int solution(int temperature, int t1, int t2, int a, int b, int[] onboard) {
-        int lowestTemperature = 10;
-        int highestTemperature = 50;
-
-        temperature += lowestTemperature;
-        t1 += lowestTemperature;
-        t2 += lowestTemperature;
-
-        int[][] dp = new int[onboard.length + 1][highestTemperature + 1];
-
-        for (int time = onboard.length - 1; time >= 0; time--) {
-            for (int temp = 0; temp <= highestTemperature; temp++) {
-                dp[time][temp] = Integer.MAX_VALUE - Math.max(a, b);
-
-                if (onboard[time] == 1 && (temp < t1 || temp > t2)) {
-                    continue;
-                }
-
-                if (temp == temperature) {
-                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp]);
-                } else if (temp < 50 && temp < temperature) {
-                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp + 1]);
-                } else if (temp > 0 && temp > temperature) {
-                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp - 1]);
-                }
-
-                if (temp < 50) {
-                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp + 1] + a);
-                }
-                if (temp > 0) {
-                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp - 1] + a);
-                }
-                dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp] + b);
-            }
-        }
-
-        return dp[0][temperature];
-    }
-}
-
 public class 에어컨 {
+
+    static class Solution {
+
+        public int solution(int temperature, int t1, int t2, int a, int b, int[] onboard) {
+            int lowestTemperature = 10;
+            int highestTemperature = 50;
+
+            temperature += lowestTemperature;
+            t1 += lowestTemperature;
+            t2 += lowestTemperature;
+
+            int[][] dp = new int[onboard.length + 1][highestTemperature + 1];
+
+            for (int time = onboard.length - 1; time >= 0; time--) {
+                for (int temp = 0; temp <= highestTemperature; temp++) {
+                    dp[time][temp] = Integer.MAX_VALUE - Math.max(a, b);
+
+                    if (onboard[time] == 1 && (temp < t1 || temp > t2)) {
+                        continue;
+                    }
+
+                    if (temp == temperature) {
+                        dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp]);
+                    } else if (temp < 50 && temp < temperature) {
+                        dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp + 1]);
+                    } else if (temp > 0 && temp > temperature) {
+                        dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp - 1]);
+                    }
+
+                    if (temp < 50) {
+                        dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp + 1] + a);
+                    }
+                    if (temp > 0) {
+                        dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp - 1] + a);
+                    }
+                    dp[time][temp] = Math.min(dp[time][temp], dp[time + 1][temp] + b);
+                }
+            }
+
+            return dp[0][temperature];
+        }
+    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
