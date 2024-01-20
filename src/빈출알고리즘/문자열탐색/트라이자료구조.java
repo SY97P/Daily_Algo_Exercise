@@ -23,7 +23,7 @@ public class 트라이자료구조 {
 		}
 	}
 
-	static class Trie {
+	private static class Trie {
 		TrieNode root;
 
 		Trie() {
@@ -62,22 +62,20 @@ public class 트라이자료구조 {
 		public void print() {
 			dfs(this.root, 0);
 		}
-	}
 
-	public static void dfs(TrieNode node, int depth) {
-		for (char child : node.children.keySet()) {
-			System.out.print("--".repeat(depth));
-			System.out.println(child);
-			dfs(node.children.get(child), depth+1);
+		private void dfs(TrieNode node, int depth) {
+			for (char child : node.children.keySet()) {
+				System.out.print("--".repeat(depth));
+				System.out.println(child);
+				dfs(node.children.get(child), depth+1);
+			}
 		}
 	}
 
+
+
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(
-			new FileReader(
-				"./백준/단계별/문자열알고리즘1/전화번호목록.txt"
-			)	
-		);
+		BufferedReader br = new BufferedReader(new FileReader("./백준/단계별/문자열알고리즘1/전화번호목록.txt"));
 
 		t = Integer.parseInt(br.readLine());
 

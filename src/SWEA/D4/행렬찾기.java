@@ -15,7 +15,6 @@ package SWEA.D4;/*
 
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-// import java.io.FileReader;
 import java.util.PriorityQueue;
 import java.util.Comparator;
 import java.util.Arrays;
@@ -38,6 +37,7 @@ public class 행렬찾기
 	public static void main(String args[]) throws Exception
 	{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Solution solution = new Solution();
 		// BufferedReader br = new BufferedReader(new FileReader("./SWEA/D4/행렬찾기.txt"));
 
 		int t = Integer.parseInt(br.readLine());
@@ -77,7 +77,7 @@ public class 행렬찾기
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j ++) {
 					if (matrix[i][j] != 0 && region[i][j] == 0) {
-						dfs(i, j, index);
+						solution.dfs(i, j, index);
 						index++;
 					}
 				}
@@ -93,7 +93,7 @@ public class 행렬찾기
 			for (int i = 0; i < n; i++) {
 				for (int j = 0; j < n; j++) {
 					if (region[i][j] == index) {
-						extractMatrix(i, j, index);
+						solution.extractMatrix(i, j, index);
 						index++;
 					}
 				}
@@ -106,32 +106,38 @@ public class 행렬찾기
 			}
 			System.out.println();
 		}
+
 	}
 
-	// 영역 구분 DFS
-	public static void dfs(int i, int j, int index) {
-		region[i][j] = index;
-		for (int[] d : dv) {
-			int di = i + d[0];
-			int dj = j + d[1];
-			
-			if ((0 <= di && di < n) && (0 <= dj && dj < n) && matrix[di][dj] != 0 && region[di][dj] == 0) {
-				dfs(di, dj, index);
+	private static class Solution {
+
+		// 영역 구분 DFS
+		private void dfs(int i, int j, int index) {
+			region[i][j] = index;
+			for (int[] d : dv) {
+				int di = i + d[0];
+				int dj = j + d[1];
+
+				if ((0 <= di && di < n) && (0 <= dj && dj < n) && matrix[di][dj] != 0 && region[di][dj] == 0) {
+					dfs(di, dj, index);
+				}
 			}
 		}
+
+		// 영역 정보 추출
+		public void extractMatrix(int i, int j, int index) {
+			int dx = 0;
+			int dy = 0;
+			for (int k = 0; k < n; k ++) {
+				if (i + k < n && region[i+k][j] == index)
+					dx++;
+				if (j + k < n && region[i][j+k] == index)
+					dy++;
+			}
+			pq.offer(new int[] {dx * dy, dx, dy});
+			count ++;
+		}
+
 	}
 
-	// 영역 정보 추출
-	public static void extractMatrix(int i, int j, int index) {
-		int dx = 0;
-		int dy = 0;
-		for (int k = 0; k < n; k ++) {
-			if (i + k < n && region[i+k][j] == index)
-				dx++;
-			if (j + k < n && region[i][j+k] == index)
-				dy++;
-		}
-		pq.offer(new int[] {dx * dy, dx, dy});
-		count ++;
-	}
 }
