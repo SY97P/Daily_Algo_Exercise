@@ -10,16 +10,20 @@
 
 from collections import deque
 
-n, m = map(int, input().split())
+def main():
+  n, m = map(int, input().split())
 
-indegree = [0] * (n+1)
+  indegree = [0] * (n+1)
 
-adj = [[] for _ in range(n+1)]
+  adj = [[] for _ in range(n+1)]
 
-for _ in range(m):
-	a, b = map(int, input().split())
-	adj[a].append(b)
-	indegree[b] += 1
+  for _ in range(m):
+    a, b = map(int, input().split())
+    adj[a].append(b)
+    indegree[b] += 1
+
+  topology_sort()
+
 
 def topology_sort():
 	result = []
@@ -39,6 +43,6 @@ def topology_sort():
 				q.append(next_node)
 
 	print(result)
-	
-topology_sort()
 
+if __name__ == '__main__':
+  main()

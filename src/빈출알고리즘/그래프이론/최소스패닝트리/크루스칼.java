@@ -1,11 +1,10 @@
-package 빈출알고리즘.그래프이론.서로소집합.최소스패닝트리;
+package 빈출알고리즘.그래프이론.최소스패닝트리;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.StringTokenizer;
-import java.io.InputStreamReader;
 
 
 /*

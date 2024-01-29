@@ -1,4 +1,4 @@
-package 빈출알고리즘.문자열탐색;
+package 빈출알고리즘.문자열탐색.트라이;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
@@ -75,7 +75,7 @@ public class 트라이자료구조 {
 
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new FileReader("./백준/단계별/문자열알고리즘1/전화번호목록.txt"));
+		BufferedReader br = new BufferedReader(new FileReader("백준/단계별/문자열알고리즘1/전화번호목록.txt"));
 
 		t = Integer.parseInt(br.readLine());
 

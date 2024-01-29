@@ -1,12 +1,11 @@
-package 빈출알고리즘.LIS;
+package 빈출알고리즘.정수.최장증가부분수열;
 
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class lis_dp {
+public class 최장증가부분수열 {
     static int n;
     static int[] a;
     static int[] dp;

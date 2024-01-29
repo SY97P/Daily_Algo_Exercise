@@ -1,4 +1,4 @@
-package 빈출알고리즘.정수조합론;
+package 빈출알고리즘.정수.이항계수;
 
 import java.io.IOException;
 import java.io.BufferedReader;

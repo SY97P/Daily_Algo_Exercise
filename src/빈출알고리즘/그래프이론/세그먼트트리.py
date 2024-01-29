@@ -1,3 +1,26 @@
+def main():
+  n, m, k = map(int, input().rstrip().split())
+
+  l = []
+  tree = [0] * 3*(10**6)
+
+  for _ in range(n):
+    l.append(int(input().rstrip()))
+
+  init(1, 0, n-1)
+
+  for _ in range(m+k):
+    a, b, c = map(int, input().split())
+
+    if a == 1:
+      b = b - 1
+      diff = c - l[b]
+      l[b] = c
+      update(1, 0, n-1, b, diff)
+    elif a == 2:
+      print(sub_sum(1, 0, n-1, b-1, c-1))
+
+
 # 세그먼트 트리 생성
 # node가 담당하는 구간 [start, end]
 def init(node, start, end):
@@ -13,11 +36,12 @@ def init(node, start, end):
 			+ init(node*2+1, (start+end)//2+1, end)
 		return tree[node]
 
+
 # 구간 합 구하기
 # node가 담당하는 구간 [start, end]
 # 합을 구해야 하는 구간 [left, right]
 def sub_sum(node, start, end, left, right):
-	
+
 	# 겹치지 않음.
 	# 더이상 탐색을 이어갈 필요 없음
 	if left > end or right < start:
@@ -38,6 +62,7 @@ def sub_sum(node, start, end, left, right):
 	return sub_sum(node*2, start, (start+end)//2, left, right)
 		+ sub_sum(node*2+1, (start+end)//2+1, end, left, right)
 
+
 def update(node, start, end, index, diff):
 	if index < start or index > end:
 		return
@@ -49,23 +74,6 @@ def update(node, start, end, index, diff):
 		update(node*2, start, (start+end)//2, index, diff)
 		update(node*2+1, (start+end)//2+1, end, index, diff)
 
-n, m, k = map(int, input().rstrip().split())
 
-l = []
-tree = [0] * 3*(10**6)
-
-for _ in range(n):
-	l.append(int(input().rstrip()))
-
-init(1, 0, n-1)
-
-for _ in range(m+k):
-	a, b, c = map(int, input().split())
-
-	if a == 1:
-		b = b - 1
-		diff = c - l[b]
-		l[b] = c
-		update(1, 0, n-1, b, diff)
-	elif a == 2:
-		print(sub_sum(1, 0, n-1, b-1, c-1))
+if __name__ == '__main__':
+  main()
