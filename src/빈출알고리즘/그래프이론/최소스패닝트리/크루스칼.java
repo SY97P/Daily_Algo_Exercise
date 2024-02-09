@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
  *
  * * 사이클 발생 확인
  * - 유니온-파인드
+ * O(E log E) -> 간선의 정렬 여부에 따라서 결과가 달라짐
+ * E < V 인 경우 효율적
  */
 public class 크루스칼 {
 

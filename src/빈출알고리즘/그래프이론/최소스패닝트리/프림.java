@@ -17,6 +17,10 @@ import java.util.PriorityQueue;
  * 1. 임의의 정점 하나를 MST에 추가
  * 2. MST에 속한 정점과 아닌 정점 간 간선 중에서 최소인 간선을 찾아 MST에 추가 (우선순위큐)
  * 3. 모든 정점이 MST에 포함될 때까지 반복
+ *
+ * 우선순위큐
+ * O(ElogV)
+ * V > E 인 경우 효율적
  */
 
 public class 프림 {

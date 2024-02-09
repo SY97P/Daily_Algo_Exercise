@@ -1,6 +1,8 @@
 # Prim Algorithm
 # MST (Minimum Spanning Tree)
 # O(e log V)
+# 우선순위큐
+# V > E 인 경우 효율적
 
 file = open("./빈출알고리즘/?.txt", "r")
 
